@@ -1,0 +1,169 @@
+{% extends 'layout/layout.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/parallaxEffect.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+{% endblock stylesheets %}  
+
+{% block content %}
+    <section class="parallax" >
+        <div class="masked-element"></div>
+        <img src="{% static 'img/1.png' %}" alt="" data-speed="1" class="layer">
+        <img src="{% static 'img/2.png' %}" alt="" data-speed="5" class="layer">
+        <img src="{% static 'img/3.png' %}" alt="" data-speed="2" class="layer">
+        <img src="{% static 'img/4.png' %}" alt="" data-speed="10" class="layer">
+        <img src="{% static 'img/5.png' %}" alt="" data-speed="4" class="layer">
+        <img src="{% static 'img/6.png' %}" alt="" data-speed="-9" class="layer">
+        <img src="{% static 'img/7.png' %}" alt="" data-speed="-10" class="layer">
+        <img src="{% static 'img/8.png' %}" alt="" data-speed="10" class="layer">
+        <img src="{% static 'img/9.png' %}" alt="" data-speed="7" class="layer">
+        <img src="{% static 'img/10.png' %}" alt="" data-speed="3" class="layer">
+        <img src="{% static 'img/11.png' %}" alt="" data-speed="-8" class="layer">
+        <img src="{% static 'img/12.png' %}" alt="" data-speed="7" class="layer">
+        <div id="particles-js"></div>
+        <svg class="separator" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 178 30" preserveAspectRatio="none" style="position: absolute;bottom: 0;left: 0;transform: rotate(180deg);">
+            <g transform="translate(-14.514284,-115.36352)">
+            <path style="fill:#4074b5;" d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            <path style="fill:#fff;" d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            </g>
+        </svg>
+        <h2 class="">ENECB 2023</h2>
+    </section>
+
+    <section class="w-100 m-0" style="font-family: 'Poppins', sans-serif;">
+        <div class="container">
+            <div class="row py-5" id="seccion1">
+                <div class="col-md-6 px-5">
+                    <h1 class="text-center">ACERCA DE</h1>
+                    <p style="text-align: justify;" class="pt-3">
+                        El Evento Nacional Estudiantil de Ciencias Básicas (ENECB) constituye una destacada plataforma en la que los estudiantes tienen la valiosa oportunidad de poner en evidencia su habilidad para aplicar el conocimiento adquirido. A través de este evento, los participantes tienen la misión de presentar propuestas sólidas y creativas para abordar problemáticas que emergen en el entorno actual.<br><br>
+                        ENECB trasciende más allá de una simple competencia académica, convirtiéndose en un espacio donde la colaboración, el pensamiento crítico y la ingeniosidad convergen para dar forma a ideas transformadoras. Al fomentar la interacción entre disciplinas, los participantes no solo consolidan su comprensión de conceptos fundamentales, sino que también se enriquecen con perspectivas interdisciplinarias que contribuyen a abordar las problemáticas desde enfoques holísticos.
+                    </p>
+                </div>
+                <div class="col-md-6 d-flex align-items-center text-center px-5">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{% static 'img/evento_1.jpeg' %}" class="d-block w-100 rounded" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{% static 'img/evento_2.jpeg' %}" class="d-block w-100 rounded" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{% static 'img/evento_4.jpeg'' %}" class="d-block w-100 rounded" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <svg class="separator alan" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 178 30" preserveAspectRatio="none" style="background: rgb(41,35,92)">
+            <g transform="translate(-14.514284,-115.36352)">
+            <path style="fill:#4074b5;" d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            <path style="fill:#fff;" d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            </g>
+        </svg>
+    </section>
+
+    <section style="overflow:hidden; background-color:rgb(41,35,92); font-family: 'Poppins', sans-serif;">
+        <div class="row py-5" id="seccion1">
+            <div class="col-md-6 px-5" style="color:rgb(255, 245, 238);">
+                <h1 class="text-center">ENECB 2023</h1>
+                <p class="text-center pt-3">El Instituto Tecnologico de Morelia <br> te invita a formar parte de esta edicion del enecb 2023</p>
+            </div>
+            <div class="col-md-6 d-flex align-items-center text-center px-5">
+                <div class="ratio ratio-16x9">
+                    <iframe class="rounded" src="https://www.veed.io/embed/3d4dd8a8-d9b4-4245-88e1-939467de7e1b" width="744" height="504" frameborder="0" title="ENECB" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <svg class="separator" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 178 30" preserveAspectRatio="none" style="transform: rotate(180deg);">
+            <g transform="translate(-14.514284,-115.36352)">
+            <path style="fill:#4074b5;" d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            <path style="fill:#fff;" d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            </g>
+        </svg>
+    </section>
+
+    <section style="overflow:hidden; font-family: 'Poppins', sans-serif;">
+        <div class="text-center py-5 px-md-5">
+            <h1>Hoteles</h1>
+            <div class="row mt-4">
+                <div class="col-md-6 px-3 mb-2">
+                    <div class="card mx-3 border rounded" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal repeat">
+                        <img src="{% static 'img/hotel.jpeg' %}" class="card-img-top img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">Best Westerm PLUS Gran Hotel Morelia</h5>
+                            <p class="card-text">El Best Western Plus Gran Hotel Morelia se encuentra junto al centro de convenciones de Morelia y ofrece habitaciones elegantes con WiFi gratuita. El establecimiento está rodeado de jardines tropicales y cuenta con pistas de tenis, gimnasio, pista de carreras de 400 metros, piscina climatizada al aire libre y 2 plantas Executive.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 px-3 mb-2">
+                    <div class="card mx-3 border rounded"data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal repeat">
+                        <img src="{% static 'img/hotel.jpeg' %}" class="card-img-top img-fluid">
+                        <div class="card-body">
+                          <h5 class="card-title">Best Westerm PLUS Gran Hotel Morelia</h5>
+                          <p class="card-text">El Best Western Plus Gran Hotel Morelia se encuentra junto al centro de convenciones de Morelia y ofrece habitaciones elegantes con WiFi gratuita. El establecimiento está rodeado de jardines tropicales y cuenta con pistas de tenis, gimnasio, pista de carreras de 400 metros, piscina climatizada al aire libre y 2 plantas Executive.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <svg class="separator" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" viewBox="0.2 0 178 30" preserveAspectRatio="none" style="background-color: rgb(27, 57, 106)">
+            <g transform="translate(-14.514284,-115.36352)">
+            <path style="fill:#4074b5;" d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            <path style="fill:#fff;" d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"></path>
+            </g>
+        </svg>
+    </section>
+
+    <section style="overflow:hidden; font-family: 'Poppins', sans-serif; background-color: rgb(27, 57, 106)">
+        <div class="text-center mx-md-5 my-5 mx-3" style="color:rgb(255, 245, 238);" id="seccion1">
+            <div class="mb-5">
+                <h2>Instituto Tecnológico de Morelia</h2>
+                <p class="mx-md-5 my-3" style="text-align: justify;">El Instituto Tecnológico de Morelia es una institución educativa pública de educación superior, que forma parte del Sistema Nacional de Institutos Tecnológicos de México. Ubicada en la Ciudad de Morelia, Michoacán, esta institución educativa goza de un gran prestigio y tradición, ocupando a nivel regional el primer lugar en el ranking de Institutos Tecnológicos de alto desempeño.</p>
+            </div>
+            <div class="row justify-content-center mb-5">
+                <div id="carouselExampleSlidesOnly" class="carousel slide w-50" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'img/hotel.jpeg' %}" class="d-block w-100 rounded" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/Logo1.jpg' %}" class="d-block w-100 rounded" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/3.png' %}" class="d-block w-100 rounded" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-5">
+                <h3>Misión</h3>
+                <p class="mx-md-5 my-3" style="text-align: justify;">Contribuir al desarrollo integral de la sociedad, a través de la formación de profesionistas a nivel licenciatura y posgrado que inciden en el desarrollo científico, tecnológico, económico y social; a nivel regional, nacional e internacional; vinculados con el sector productivo; en cumplimiento de las leyes que nos rigen.</p>
+            </div>
+            <div class="mb-5">
+                <h3>Visión</h3>
+                <p class="mx-md-5 my-3" style="text-align: justify;">Consolidar nuestro proceso educativo fortaleciendo la vinculación con la sociedad influyendo en su desarrollo a través de soluciones innovadoras a los problemas científicos, tecnológicos, económicos y sociales con egresados de excelencia, reconocidos nacional e internacionalmente.</p>
+            </div>
+            <div class="mb-5">
+                <h3>Mapa del Instituto Tecnológico de Morelia</h3>
+                <div class="row justify-content-center my-3">
+                    <div>
+                        <a href="https://www.morelia.tecnm.mx/assets/home/ITM_Plano_General.pdf" target="_blank">
+                            <img class="w-50 rounded" src="{% static 'img/Mapa.jpeg' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'particles/particles.min.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock js %}
+

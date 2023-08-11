@@ -1,0 +1,41 @@
+.contenedor_credencial {
+  width: 20rem;
+  height: 30rem;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+}
+.logo_tec {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo_tec img {
+  width: 17rem;
+  height: 8rem;
+}
+.contenido_credencial {
+  display: flex;
+}
+.datos_credencial {
+  display: flex;
+  flex-direction: column;
+}
+.container_foto {
+  margin: 0.5rem 1.5rem;
+  width: 7rem;
+  height: 9.28rem;
+  background-color: blue;
+}
+.datos_nombre,
+.datos_cargo {
+  margin: 0.125rem 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.nombre,
+.apellidos,
+.title_cargo,
+.cargo {
+  margin: 0.1rem;
+}
