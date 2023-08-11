@@ -3,7 +3,10 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/parallaxEffect.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    {% comment %} <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> {% endcomment %}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/textAnimate.css' %}">
 {% endblock stylesheets %}  
 
@@ -58,7 +61,7 @@
           {% comment %} </div> {% endcomment %}
     </section>
 
-    <section class="w-100 m-0" style="font-family: 'Poppins', sans-serif;">
+    <section class="w-100 m-0" style="font-family: 'Atkinson Hyperlegible', sans-serif;">
         <div class="container">
             <div class="row py-5" id="seccion1">
                 <div class="col-lg-6 px-5">
@@ -72,13 +75,13 @@
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="{% static 'img/evento_1.jpeg' %}" class="d-block w-100 rounded" alt="...">
+                            <img src="{% static 'img/evento_1.jpg' %}" class="d-block w-100 rounded" alt="...">
                           </div>
                           <div class="carousel-item">
                             <img src="{% static 'img/evento_2.jpeg' %}" class="d-block w-100 rounded" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="{% static 'img/evento_4.jpeg' %}" class="d-block w-100 rounded" alt="...">
+                            <img src="{% static 'img/evento_3.jpg' %}" class="d-block w-100 rounded" alt="...">
                           </div>
                         </div>
                       </div>
@@ -93,7 +96,7 @@
         </svg>
     </section>
 
-    <section style="overflow:hidden; background-color:rgb(41,35,92); font-family: 'Poppins', sans-serif;">
+    <section style="overflow:hidden; background-color:rgb(41,35,92); font-family: 'Atkinson Hyperlegible', sans-serif;">
         <div class="row py-5" id="seccion1">
             <div class="col-md-6 px-5" style="color:rgb(255, 245, 238);">
                 <h1 class="text-center">ENECB 2023</h1>
@@ -113,25 +116,25 @@
         </svg>
     </section>
 
-    <section style="overflow:hidden; font-family: 'Poppins', sans-serif;">
+    <section style="overflow:hidden; font-family: 'Atkinson Hyperlegible', sans-serif;">
         <div class="text-center py-5 px-md-5">
             <h1>Hospedaje</h1>
             <div class="row mt-4">
                 <div class="col-md-6 px-3 mb-2">
                     <div class="card mx-3 border rounded" data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal repeat">
-                        <img src="{% static 'img/hotel.jpeg' %}" class="card-img-top img-fluid">
+                        <img src="{% static 'img/hotel3.jpg' %}" class="card-img-top img-fluid">
                         <div class="card-body">
                             <h5 class="card-title">Best Westerm PLUS Gran Hotel Morelia</h5>
-                            <p class="card-text">El Best Western Plus Gran Hotel Morelia se encuentra junto al centro de convenciones de Morelia y ofrece habitaciones elegantes con WiFi gratuita. El establecimiento está rodeado de jardines tropicales y cuenta con pistas de tenis, gimnasio, pista de carreras de 400 metros, piscina climatizada al aire libre y 2 plantas Executive.</p>
+                            <p class="card-text" style="text-align: justify;">El Best Western Plus Gran Hotel Morelia se encuentra junto al centro de convenciones de Morelia y ofrece habitaciones elegantes con WiFi gratuita. El establecimiento está rodeado de jardines tropicales y cuenta con pistas de tenis, gimnasio, pista de carreras de 400 metros y piscina climatizada al aire libre.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 px-3 mb-2">
                     <div class="card mx-3 border rounded"data-anijs="if: scroll, on: window, do: bounceIn animated, before: $scrollReveal repeat">
-                        <img src="{% static 'img/hotel.jpeg' %}" class="card-img-top img-fluid">
+                        <img src="{% static 'img/hotel2.jpg' %}" class="card-img-top img-fluid">
                         <div class="card-body">
-                          <h5 class="card-title">Best Westerm PLUS Gran Hotel Morelia</h5>
-                          <p class="card-text">El Best Western Plus Gran Hotel Morelia se encuentra junto al centro de convenciones de Morelia y ofrece habitaciones elegantes con WiFi gratuita. El establecimiento está rodeado de jardines tropicales y cuenta con pistas de tenis, gimnasio, pista de carreras de 400 metros, piscina climatizada al aire libre y 2 plantas Executive.</p>
+                          <h5 class="card-title">Hotel One de Morelia Acueducto</h5>
+                          <p class="card-text" style="text-align: justify;">El Hotel One de Morelia Acueducto se encuentra en la colonia Lomas de Hidalgo, muy cerca de la Torre financiera de la Capital Morelina. dispone de piscina al aire libre, gimnasio y habitaciones elegantes con WiFi gratuita. Las habitaciones son amplias y se puede disfrutar de vistas a la ciudad.</p>
                         </div>
                     </div>
                 </div>
@@ -145,7 +148,7 @@
         </svg>
     </section>
 
-    <section style="overflow:hidden; font-family: 'Poppins', sans-serif; background-color: rgb(27, 57, 106)">
+    <section style="overflow:hidden; font-family: 'Atkinson Hyperlegible', sans-serif; background-color: rgb(27, 57, 106)">
         <div class="text-center mx-md-5 my-5 mx-3" style="color:rgb(255, 245, 238);" id="seccion1">
             <div class="mb-5">
                 <h2>Instituto Tecnológico de Morelia</h2>
@@ -163,13 +166,15 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-5">
-                <h3>Misión</h3>
-                <p class="mx-md-5 my-3" style="text-align: justify;">Contribuir al desarrollo integral de la sociedad, a través de la formación de profesionistas a nivel licenciatura y posgrado que inciden en el desarrollo científico, tecnológico, económico y social; a nivel regional, nacional e internacional; vinculados con el sector productivo; en cumplimiento de las leyes que nos rigen.</p>
-            </div>
-            <div class="mb-5">
-                <h3>Visión</h3>
-                <p class="mx-md-5 my-3" style="text-align: justify;">Consolidar nuestro proceso educativo fortaleciendo la vinculación con la sociedad influyendo en su desarrollo a través de soluciones innovadoras a los problemas científicos, tecnológicos, económicos y sociales con egresados de excelencia, reconocidos nacional e internacionalmente.</p>
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <h3>Misión</h3>
+                    <p class="mx-md-5 my-3" style="text-align: justify;">Contribuir al desarrollo integral de la sociedad, a través de la formación de profesionistas a nivel licenciatura y posgrado que inciden en el desarrollo científico, tecnológico, económico y social; a nivel regional, nacional e internacional; vinculados con el sector productivo; en cumplimiento de las leyes que nos rigen.</p>
+                </div>
+                <div class="col-md-6 mb-5">
+                    <h3>Visión</h3>
+                    <p class="mx-md-5 my-3" style="text-align: justify;">Consolidar nuestro proceso educativo fortaleciendo la vinculación con la sociedad influyendo en su desarrollo a través de soluciones innovadoras a los problemas científicos, tecnológicos, económicos y sociales con egresados de excelencia, reconocidos nacional e internacionalmente.</p>
+                </div>
             </div>
             <div class="mb-5">
                 <h3>Mapa del Instituto Tecnológico de Morelia</h3>
