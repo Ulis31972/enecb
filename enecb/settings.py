@@ -81,17 +81,6 @@ WSGI_APPLICATION = 'enecb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'tJTkilq8A1gE2JVCr7WQ',
-#         'HOST': 'containers-us-west-126.railway.app',
-#         'PORT': '5523',
-#     }
-# }
-
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
@@ -99,6 +88,13 @@ DATABASES = {
         conn_max_age=600
     )
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
