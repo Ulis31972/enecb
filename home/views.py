@@ -5,5 +5,5 @@ def index(request):
     return render(request, 'index.html', {})
 
 def credencial(request):
-    return render(request, 'credenciales/credencialesFront.html')
+    return render(request, 'credenciales/mostrarCredenciales.html')
 
