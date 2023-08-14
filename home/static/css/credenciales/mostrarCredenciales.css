@@ -1,0 +1,23 @@
+.contenedor_credenciales {
+  margin: 0 auto;
+  width: 20rem;
+  height: 30rem;
+  position: relative;
+  transition: transform 1500ms;
+  transform-style: preserve-3d;
+}
+.contenedor_credenciales:hover,
+.contenedor_credenciales:active {
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+.credencial_frente,
+.credencial_reverso {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.credencial_reverso {
+  transform: rotateY(180deg);
+}
