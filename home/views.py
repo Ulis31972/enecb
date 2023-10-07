@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.http import HttpResponse
 from weasyprint import HTML,CSS
 import weasyprint
 from enecb import settings
 import os
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def index(request):
@@ -28,3 +30,19 @@ def credencial(request):
     else:
         return render(request, 'credenciales/mostrarCredenciales.html')
 
+def loginView(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            # Redirect the user to a page after login.
+            return redirect('index')
+        else:
+            # Show an error message if authentication fails.
+            messages.error(request, 'Usuario o contraseña incorrectos')
+
+    return render(request, 'account/login.html', {})
