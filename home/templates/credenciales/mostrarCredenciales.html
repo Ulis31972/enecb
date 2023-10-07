@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+
+{% extends 'layout/layout.html' %}
+{% load static %}
+{% block content %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Gothic+A1&family=KoHo&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../../static/css/credenciales/frente.css" />
-    <link rel="stylesheet" href="../../static/css/credenciales/back.css" />
+
+
     <link rel="stylesheet" href="../../static/css/credenciales/mostrarCredenciales.css" />
     <title>Gafete</title>
   </head>
-  <body>
+  <body class="mostrar_credenciales">
     <div class="contenedor_credenciales">
         <div class="credencial_frente">
             {% include 'credenciales/credencialesFront.html' %}
@@ -23,5 +19,12 @@
             {% include 'credenciales/credencialesBack.html' %}
           </div>
     </div>
+    <form method="POST">{% csrf_token %}
+      <button type="submit">Descargar</button>
+    </form>
+    <div class="rotate-card" id="rotate-card">
+      Rotar
+    </div>
+    <script src="{% static 'js/credencial/mostrarCredencial.js' %}"></script>
   </body>
-</html>
+  {% endblock %}

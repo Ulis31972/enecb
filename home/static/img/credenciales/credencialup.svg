@@ -1,16 +1,4 @@
-{% load static %}
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Gothic+A1&family=KoHo&display=swap"
-  rel="stylesheet"
-/>
-<link rel="stylesheet" href="../../static/css/credenciales/credencialback.css" />
-<div class="contenedor_credencial">
-  <div class="decorador">
-    <!--Esto debe tener position relative-->
-    <div class="decorador_design">
-      <svg
+<svg
         class="separator"
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
@@ -30,19 +18,3 @@
           ></path>
         </g>
       </svg>
-      <div class="logo_itmorelia">
-        <!--Esto debe tener position absolute-->
-        <img src="../../static/img/itmorelia.png" alt="Logo Tec Morelia" />
-      </div>
-    </div>
-  </div>
-  <div class="qr">
-    <img src="../../static/img/qr/qr.png" alt="Codigo QR" />
-  </div>
-  <div class="direccion">
-    <p>
-      Avenida Tecnológico 1500,<br />
-      58120 Morelia, Michoacán
-    </p>
-  </div>
-</div>
