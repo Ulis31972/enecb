@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'home',
 ]
 
+X_FRAME_OPTIONS = 'SAMEORIGIN' #Antes de los MIDDLEWARE
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -127,7 +129,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -149,3 +152,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
+
+MEDIA_URL = '/media/'  # La URL base para los archivos multimedia
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # La ubicación en el sistema de archivos donde se almacenarán los archivos multimedia

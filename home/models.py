@@ -33,6 +33,27 @@ class Actividad(models.Model):
     fechaActividad = models.DateTimeField(auto_now=False, auto_now_add=False,null=False)
     ubicacionActividad = models.CharField(max_length=10)
     responsableActividad = models.CharField(max_length=50) #Este se puede sustituir por un FK si el Staff tambien contara con acceso al sistema
-   
-
 # precios (tipo (opciones individual, doble, triple), precio, hotel (foreign))
+    
+class RegistroAsistencia(models.Model):
+    # actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fechaRegistro = models.DateTimeField()
+    horaRegistro = models.TimeField()
+    # ubicacionRegistro = models.CharField(max_length=10)
+    # responsableRegistro = models.CharField(max_length=50)
+    
+class Tecnologico(models.Model):
+    nombreTec = models.CharField(max_length=50, null=False)
+    logo = models.ImageField(upload_to='logos/')
+    
+class InformacionExtraUsuario(models.Model):
+    MODALIDAD_CHOICES = (
+        ('Presencial', 'Presencial'),
+        ('Virtual', 'Virtual'),
+    )
+    cargo = models.CharField(max_length=50, null=False)
+    tecOrigen = models.ForeignKey(Tecnologico, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    modalidad = models.CharField(max_length=50, null=False, choices=MODALIDAD_CHOICES)
+    imagen = models.ImageField(upload_to='fotos/')

@@ -5,9 +5,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-    <link rel="stylesheet" href="../../static/css/credenciales/mostrarCredenciales.css" />
+    <link rel="stylesheet" href="{% static 'css/credenciales/mostrarCredenciales.css' %}" />
     <title>Gafete</title>
   </head>
   <body class="mostrar_credenciales">
@@ -19,12 +19,18 @@
             {% include 'credenciales/credencialesBack.html' %}
           </div>
     </div>
-    <form method="POST">{% csrf_token %}
-      <button type="submit">Descargar</button>
-    </form>
-    <div class="rotate-card" id="rotate-card">
-      Rotar
+    <div class="container_buttons">
+      <form method="POST">{% csrf_token %}
+        <button type="submit" class="btn btn-primary text-center"><i class="fa-solid fa-file-arrow-down"></i></button>
+      </form>
+      {% comment %} <button class="btn btn-primary d-flex flex-row text-center" id="rotate-card">
+        <i class="fa-solid fa-rotate"></i>
+      </button> {% endcomment %}
+      <button class="btn btn-primary" id="rotate-card">
+        <i class="fa-solid fa-rotate"></i>
+      </button>
     </div>
+
     <script src="{% static 'js/credencial/mostrarCredencial.js' %}"></script>
   </body>
   {% endblock %}

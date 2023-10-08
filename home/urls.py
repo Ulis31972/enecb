@@ -3,10 +3,16 @@ from . import views
 # from django.conf import settings
 # from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('indexFormal', views.indexFormal, name="indexFormal"),
     path('credencial', views.credencial, name="credencial"),
     path('login/', views.loginView, name="login"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('registro/asistencia/<int:id>', views.registroAsistencia, name="registroAsistencia"),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
