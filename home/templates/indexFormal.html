@@ -6,12 +6,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/textAnimate.css' %}">
+    <style>
+        .imgFondo {
+            background-image: url("{% static 'img/FondoFormal.jpg' %}");
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
 {% endblock stylesheets %}  
 
 {% block content %}
-    <section style="background-color: #1B396A; height: 100vh">
-        <br><br><br><br><br><br>
-        <h1>Imagen muy muy formal pa que no haya problemas de formalidad osiosi</h1>
+    <section class="imgFondo">
+        
+    </section>
+    <section style="overflow:hidden; background:#1B396A; font-family: 'Atkinson Hyperlegible', sans-serif;">
+        <div class="row py-5" id="seccion1">
+            <div class="col-md-6 px-5" style="color:rgb(255, 245, 238);">
+                <h1 class="text-center">ENECB 2023</h1>
+                <p style="text-align: justify;" class="pt-3">El Instituto Tecnológico de Morelia tiene el honor de extenderte una calurosa invitación para que formes parte de la emocionante edición del Evento Nacional Estudiantil de Ciencias Básicas (ENECB) 2023.</p>
+            </div>
+            <div class="col-md-6 d-flex align-items-center text-center px-5">
+                <div class="ratio ratio-16x9">
+                    <iframe class="rounded" src="https://www.veed.io/embed/3d4dd8a8-d9b4-4245-88e1-939467de7e1b" width="744" height="504" frameborder="0" title="ENECB" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="w-100 m-0" style="font-family: 'Atkinson Hyperlegible', sans-serif;">
@@ -43,19 +62,7 @@
         </div>
     </section>
 
-    <section style="overflow:hidden; background:#1B396A; font-family: 'Atkinson Hyperlegible', sans-serif;">
-        <div class="row py-5" id="seccion1">
-            <div class="col-md-6 px-5" style="color:rgb(255, 245, 238);">
-                <h1 class="text-center">ENECB 2023</h1>
-                <p style="text-align: justify;" class="pt-3">El Instituto Tecnológico de Morelia tiene el honor de extenderte una calurosa invitación para que formes parte de la emocionante edición del Evento Nacional Estudiantil de Ciencias Básicas (ENECB) 2023.</p>
-            </div>
-            <div class="col-md-6 d-flex align-items-center text-center px-5">
-                <div class="ratio ratio-16x9">
-                    <iframe class="rounded" src="https://www.veed.io/embed/3d4dd8a8-d9b4-4245-88e1-939467de7e1b" width="744" height="504" frameborder="0" title="ENECB" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <section style="overflow:hidden; font-family: 'Atkinson Hyperlegible', sans-serif;">
         <div class="text-center py-5 px-md-5">
@@ -120,6 +127,28 @@
                             <img class="rounded" src="{% static 'img/Mapa.jpeg' %}" alt="" style="min-width: 300px; max-width: 50%; width: 50%">
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="overflow:hidden; font-family: 'Atkinson Hyperlegible', sans-serif; background: #1B396A">
+        <hr style="color: white;">
+        <div class="row py-5">
+            <div class="col-md-4">
+                <img
+                    src="{% static 'img/LogoPriva.png' %}"
+                    style="min-width: 200px; max-width: 35%; width: 35%"
+                />
+            </div>
+            <div class="col-md-4">
+                <div class="text-center" style="color: white">
+                    Aviso de Privacidad<br>© 2023 Tecnológico Nacional de México
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center" style="color: white">
+                    Informes<br>Email: difusion@itmorelia.edu.mx<br>Teléfono: +52 (443) 312 1570
                 </div>
             </div>
         </div>

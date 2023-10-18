@@ -19,11 +19,23 @@
     {% block stylesheets %}{% endblock stylesheets %}
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg fixed-top" id="menu" style="background: white;">
-      <div class="container-fluid">
+    <div class="container-fluid fixed-top" style="background: #0C231E; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+      <a href="https://www.gob.mx/">
+        <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" width="128" height="48" alt="PÃƒÂ¡gina de inicio, Gobierno de MÃƒÂ©xico">
+      </a>
+      <div>
+        <a class="px-2" style="color: white; text-decoration:none;" href="https://www.gob.mx/gobierno">Gobierno</a>
+        <a class="px-2" style="color: white; text-decoration:none;" href="https://www.participa.gob.mx">Participa</a>
+        <aclass="px-2" style="color: white; text-decoration:none;" href="https://datos.gob.mx">Datos</aclass=>
+      </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg" id="menu" style="background: white;">
+      
+      <div class="container-fluid mt-4">
         <img
           src="{% static 'img/LogoSinFondo.png' %}"
-          style="min-width: 200px; max-width: 30%; width: 30%"
+          style="min-width: 200px; max-width: 35%; width: 35%"
         />
         <button
           class="navbar-toggler"
@@ -42,27 +54,27 @@
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{% url "index" %}"
+              <a class="nav-link" aria-current="page" href="{% url "index" %}" style="font-size: 1.3rem;"
                 ><i class="bi bi-house-fill"></i> Inicio</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://visitmichoacan.com.mx/"
+              <a class="nav-link" href="https://visitmichoacan.com.mx/" style="font-size: 1.3rem;"
               ><i class="bi bi-airplane-fill"></i> Turismo</a
               >
             </li>
             {% if user.is_authenticated %}
               <!-- Mostrar las opciones para usuarios autenticados -->
               <li class="nav-item">
-                  <a class="nav-link" href="{% url 'credencial' %}"><i class="bi bi-person-vcard-fill"></i> Gafete</a>
+                  <a class="nav-link" href="{% url 'credencial' %}" style="font-size: 1.3rem;"><i class="bi bi-person-vcard-fill"></i> Gafete</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="{% url "logout" %}"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
+                  <a class="nav-link" href="{% url "logout" %}" style="font-size: 1.3rem;"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
               </li>
             {% else %}
               <!-- Mostrar la opción de Login para usuarios no autenticados -->
               <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}"><i class="bi bi-person-circle"></i> Login</a>
+                  <a class="nav-link" href="{% url 'login' %}" style="font-size: 1.3rem;"><i class="bi bi-person-circle"></i> Ingresar</a>
               </li>
             {% endif %}
           </ul>
