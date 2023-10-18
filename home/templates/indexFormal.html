@@ -10,6 +10,7 @@
         .imgFondo {
             background-image: url("{% static 'img/FondoFormal.jpg' %}");
             background-size: cover;
+            background-position: center;
             height: 100vh;
         }
     </style>
@@ -134,21 +135,23 @@
 
     <section style="overflow:hidden; font-family: 'Atkinson Hyperlegible', sans-serif; background: #1B396A">
         <hr style="color: white;">
-        <div class="row py-5">
-            <div class="col-md-4">
-                <img
-                    src="{% static 'img/LogoPriva.png' %}"
-                    style="min-width: 200px; max-width: 35%; width: 35%"
-                />
-            </div>
-            <div class="col-md-4">
-                <div class="text-center" style="color: white">
-                    Aviso de Privacidad<br>© 2023 Tecnológico Nacional de México
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-4 text-center">
+                    <img
+                        src="{% static 'img/LogoPriva.png' %}"
+                        style="min-width: 200px; max-width: 35%; width: 35%"
+                    />
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="text-center" style="color: white">
-                    Informes<br>Email: difusion@itmorelia.edu.mx<br>Teléfono: +52 (443) 312 1570
+                <div class="col-md-4">
+                    <div class="text-center" style="color: white">
+                        Aviso de Privacidad<br>© 2023 Tecnológico Nacional de México
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center" style="color: white">
+                        Informes<br>Email: difusion@itmorelia.edu.mx<br>Teléfono: +52 (443) 312 1570
+                    </div>
                 </div>
             </div>
         </div>
