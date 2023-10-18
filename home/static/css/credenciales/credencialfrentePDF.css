@@ -1,0 +1,107 @@
+p,h1,h2,h3{
+  font-family: 'Gothic A1', sans-serif;
+}
+.contenedor_credencial {
+ border: 2px black solid;
+  border-radius: 2rem;
+  width: 20rem;
+  height: 30rem;
+  box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
+  display: flex;
+  flex-direction: column;
+}
+.logo_tec {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo_tec img {
+  width: 17rem;
+  height: 8rem;
+}
+.contenido_credencial {
+  display: flex;
+  justify-content: flex-  ;
+}
+.datos_credencial {
+  display: flex;
+  flex-direction: column;
+}
+.container_foto {
+  margin: 0.5rem 1.5rem;
+  width: 7rem;
+  height: 9.28rem;
+  border: 1px solid black;
+}
+.container_foto img{
+  width: 100%;
+  height: 100% ;
+}
+.datos_nombre,
+.datos_cargo {
+  margin: 0.125rem 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.nombre,
+.apellidos,
+.title_cargo,
+.cargo {
+  margin: 0.1rem;
+}
+.tec_procedencia {
+  height: 11.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.informacion_adicional {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.logo_tec_procedencia {
+  align-self: center;
+  width: 7rem;
+  height: 1.5rem;
+  margin-left: 9rem;
+  margin-bottom: 5rem;
+}
+.logo_tec_procedencia img {
+ width: 100%;
+}
+.texto_procedencia{
+  margin-left: 9rem;
+  margin-top: 6rem;
+  font-size: 12;
+  text-align: center;
+}
+.logo_enecb {
+  width: 9rem;
+  margin: 0 3rem ;
+}
+.logo_enecb img {
+  width: 100%;
+}
+.nombre,
+.apellidos {
+  font-family: "KoHo", sans-serif;
+}
+.nombre{
+  font-size: 20;
+}
+.apellidos{
+  font-size: 15;
+}
+.title_cargo{
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-size: 25;
+  color: #3D5780;
+}
+.decorador_frente svg{
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}

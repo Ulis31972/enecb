@@ -24,29 +24,36 @@ def indexFormal(request):
 @login_required(login_url='/login/')
 def credencial(request):
     firstName = request.user.first_name
-    lastName= request.user.last_name
+    lastName = request.user.last_name
     extraInfo = InformacionExtraUsuario.objects.get(user=request.user)
-    # print(extraInfo.tecOrigen.nombreTec)
-    #Imprimir la credencial
-    if request.method == "POST":
-        template = get_template("credenciales/credencialesFront.html")
-        context = {"name":"CredencialFrente","firstName":firstName,"lastName":lastName,"extraInfo":extraInfo}
-        css_url = os.path.join(settings.BASE_DIR,'home\static\css\credenciales\credencialfrente.css')
-        googleFonts= "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Gothic+A1&family=KoHo&display=swap"
-        print(css_url)
-        html_template = template.render(context)
-        html = HTML(string=html_template,base_url=request.build_absolute_uri())
-        #pdf = html.write_pdf(stylesheets=[css_url],target="Prueba.pdf",presentational_hints=True)
-        pdf = weasyprint.HTML(string=html_template).write_pdf()
-        response = HttpResponse(pdf,content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="archivo.pdf"'
-        #return render(request, 'credenciales/mostrarCredenciales.html')
-        return response
-    #Renderizar credencial
-    else:
-        context ={"firstName":firstName,"lastName":lastName,"extraInfo":extraInfo}
-        return render(request, 'credenciales/mostrarCredenciales.html',context=context)
 
+    if request.method == "POST":
+        weasyprint_settings = {
+            'keep_image_data': True,  # Para incluir imágenes dentro del SVG
+        }
+        # Obtén la ruta al archivo CSS
+        css_url = os.path.join(settings.BASE_DIR, 'home/static/css/credenciales/credencialfrentePDF.css')
+        # Obtén la ruta al archivo de imagen
+        image_url = extraInfo.imagen.path
+
+        # Carga la plantilla HTML
+        template = get_template("credenciales/credencialesFront.html")
+        context = {"name": "CredencialFrente", "firstName": firstName, "lastName": lastName, "extraInfo": extraInfo}
+        html_template = template.render(context)
+
+        # Genera el PDF con WeasyPrint
+        pdf = weasyprint.HTML(string=html_template, base_url=request.build_absolute_uri()).write_pdf(
+            stylesheets=[weasyprint.CSS(css_url)],
+            weasyprint_settings = weasyprint_settings,
+        )
+
+        # Configura la respuesta HTTP y devuelve el PDF
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="archivo.pdf"'
+        return response
+    else:
+        context = {"firstName": firstName, "lastName": lastName, "extraInfo": extraInfo}
+        return render(request, 'credenciales/mostrarCredenciales.html', context=context)
 def loginView(request):
     if request.method == 'POST':
         username = request.POST['username']
