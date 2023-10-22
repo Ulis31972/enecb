@@ -150,8 +150,8 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'indexFormal'
+LOGOUT_REDIRECT_URL = 'indexFormal'
 
 MEDIA_URL = '/media/'  # La URL base para los archivos multimedia
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # La ubicación en el sistema de archivos donde se almacenarán los archivos multimedia

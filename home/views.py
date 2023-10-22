@@ -54,6 +54,7 @@ def credencial(request):
     else:
         context = {"firstName": firstName, "lastName": lastName, "extraInfo": extraInfo}
         return render(request, 'credenciales/mostrarCredenciales.html', context=context)
+    
 def loginView(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -63,7 +64,7 @@ def loginView(request):
         if user is not None:
             login(request, user)
             # Redirect the user to a page after login.
-            return redirect('index')
+            return redirect('indexFormal')
         else:
             # Show an error message if authentication fails.
             messages.error(request, 'Usuario o contraseña incorrectos')

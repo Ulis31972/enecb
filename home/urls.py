@@ -7,8 +7,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index, name="index"),
-    path('indexFormal', views.indexFormal, name="indexFormal"),
+    path('', views.indexFormal, name="indexFormal"),
+    path('index', views.index, name="index"),
     path('credencial', views.credencial, name="credencial"),
     path('login/', views.loginView, name="login"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
