@@ -25,7 +25,9 @@
     </div>
     <div class="container_buttons">
       <form method="POST">{% csrf_token %}
-        <button type="submit" class="btn btn-primary text-center"><i class="fa-solid fa-file-arrow-down"></i></button>
+        
+        {% comment %} 
+        <button type="submit" class="btn btn-primary text-center"><i class="fa-solid fa-file-arrow-down"></i></button>{% endcomment %}
       </form>
       {% comment %} <button class="btn btn-primary d-flex flex-row text-center" id="rotate-card">
         <i class="fa-solid fa-rotate"></i>

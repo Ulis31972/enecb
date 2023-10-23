@@ -23,6 +23,7 @@ class ComplementoUser(models.Model):
     tecOrigen = models.CharField(max_length=50, null=False)
     hospedaje = models.ForeignKey(Hotel, on_delete=models.CASCADE)
 
+
 class Precios(models.Model):
     tipoHabitacion = models.CharField(max_length=15,choices = HABITACIONES)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
@@ -57,3 +58,4 @@ class InformacionExtraUsuario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     modalidad = models.CharField(max_length=50, null=False, choices=MODALIDAD_CHOICES)
     imagen = models.ImageField(upload_to='fotos/')
+    tipoUsuario = models.CharField(null=False, max_length=20, default="Visitante") 

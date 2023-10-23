@@ -7,7 +7,22 @@
 />
 <link rel="stylesheet" href="../../static/css/credenciales/credencialback.css" />
 <div class="contenedor_credencial">
-  <div class="decorador">
+  <div class="decorador" 
+  
+  
+  {% if extraInfo.tipoUsuario == "Autoridad" %}
+  style="background-color:#29235c ;"
+  {% endif %}
+  {% if extraInfo.tipoUsuario == "Organizadores" %}
+  style="background-color:#6a1c30 ;"
+  {% endif %}
+  {% if extraInfo.tipoUsuario == "Ciencias Basicas" %}
+  style="background-color:#23571f ;"
+  {% endif %}
+  {% if extraInfo.tipoUsuario == "Visitante" %}
+  style="background-color:#f2ff00 ;"
+  {% endif %}
+  >
     <!--Esto debe tener position relative-->
     <div class="decorador_design">
       <svg
@@ -19,25 +34,63 @@
         preserveAspectRatio="none"
         transform=" translate(0 90)"
       >
-        <g transform="translate(-14.514284,-115.36352)">
-          <path
-            style="fill: #4074b5"
-            d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
-          ></path>
-          <path
-            style="fill: #29235c"
-            d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
-          ></path>
-        </g>
+      {% if extraInfo.tipoUsuario == "Visitante" %}
+      <g transform="translate(-14.514284,-115.36352)">
+        <path
+          style="fill: #b0eb49"
+          d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+        <path
+          style="fill: #f2ff00"
+          d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+      </g>
+      {% endif %}
+      {% if extraInfo.tipoUsuario == "Autoridad" %}
+      <g transform="translate(-14.514284,-115.36352)">
+        <path
+          style="fill: #4074b5"
+          d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+        <path
+          style="fill: #29235c"
+          d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+      </g>
+      {% endif %}
+      {% if extraInfo.tipoUsuario == "Ciencias Basicas" %}
+      <g transform="translate(-14.514284,-115.36352)">
+        <path
+          style="fill: #53ba4c"
+          d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+        <path
+          style="fill: #23571f"
+          d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+      </g>
+      {% endif %}
+      {% if extraInfo.tipoUsuario == "Organizadores" %}
+      <g transform="translate(-14.514284,-115.36352)">
+        <path
+          style="fill: #d6375f"
+          d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+        <path
+          style="fill: #6a1c30"
+          d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+      </g>
+      {% endif %}
       </svg>
       <div class="logo_itmorelia">
         <!--Esto debe tener position absolute-->
-        <img src="../../static/img/itmorelia.png" alt="Logo Tec Morelia" />
+        <img src="{% static 'img/imgActualizadas/ESCUDO TEC OK.png' %}" alt="Logo Tec Morelia" />
       </div>
     </div>
   </div>
   <div class="qr">
-    <img src="../../static/img/qr/qr.png" alt="Codigo QR" />
+    <img src="{% static 'img/qr/qr.png' %}" alt="Codigo QR" />
   </div>
   <div class="direccion">
     <p>

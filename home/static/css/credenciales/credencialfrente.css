@@ -12,14 +12,15 @@ p,h1,h2,h3{
   flex-direction: column;
 }
 .logo_tec {
+  
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .logo_tec img {
-  width: 17rem;
-  height: 8rem;
+  width: 15rem;
+  height: 6rem;
 }
 .contenido_credencial {
   display: flex;
@@ -95,7 +96,11 @@ p,h1,h2,h3{
   font-size: 25;
   color: #3D5780;
 }
+
 .decorador_frente svg{
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
+}
+.decorador_frente{
+  margin-top: 2rem;
 }
