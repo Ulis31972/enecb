@@ -1,0 +1,37 @@
+{% extends 'layout/layoutFormal.html' %}
+{% load static %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/parallaxEffect.css' %}">
+    {% comment %} <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> {% endcomment %}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/textAnimate.css' %}">
+{% endblock stylesheets %}  
+
+{% block content %}
+<div class="d-flex align-items-center flex-column m-4">
+    <h1>Horario</h1>
+    <embed src="{% static 'pdf/horario.pdf' %}" id="pdf" class="w-75 m-3" style="height: 75rem;">
+</div>
+
+{% endblock %}
+    
+{% block js %}
+<script src="{% static 'particles/particles.min.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script>
+    $(function() {
+        $('.intro').addClass('go');
+      
+        $('.reload').click(function() {
+          $('.intro').removeClass('go').delay(200).queue(function(next) {
+            $('.intro').addClass('go');
+            next();
+          });
+        });
+      })
+</script>
+{% endblock js %}

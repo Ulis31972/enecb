@@ -21,6 +21,9 @@ def index(request):
 def indexFormal(request):
     return render(request, 'indexFormal.html', {})
 
+def horario(request):
+    return render(request, 'horario.html',{})
+
 @login_required(login_url='/login/')
 def credencial(request):
     firstName = request.user.first_name
@@ -84,3 +87,4 @@ def registroAsistencia(request, id):
     # )
     
     return render(request, 'registroAsistencia.html', {})
+

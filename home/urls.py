@@ -13,6 +13,7 @@ urlpatterns = [
     path('login/', views.loginView, name="login"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('registro/asistencia/<int:id>', views.registroAsistencia, name="registroAsistencia"),
+    path('horario', views.horario, name="horario"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
