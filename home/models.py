@@ -17,13 +17,6 @@ class Hotel(models.Model):
     nombreHotel = models.CharField(max_length=25,null=False)
     ubicacionHotel = models.CharField(max_length=45, null=False)
 
-class ComplementoUser(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
-    fotoPerfil = models.CharField(max_length=100,null=False)
-    tecOrigen = models.CharField(max_length=50, null=False)
-    hospedaje = models.ForeignKey(Hotel, on_delete=models.CASCADE)
-
-
 class Precios(models.Model):
     tipoHabitacion = models.CharField(max_length=15,choices = HABITACIONES)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
