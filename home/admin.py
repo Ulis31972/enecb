@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import InformacionExtraUsuario,Tecnologico
+from .models import *
 # Register your models here.
 
 # admin.site.register(ComplementoUser)
@@ -8,3 +8,4 @@ from .models import InformacionExtraUsuario,Tecnologico
 
 admin.site.register(InformacionExtraUsuario)
 admin.site.register(Tecnologico)
+admin.site.register(Hotel)
