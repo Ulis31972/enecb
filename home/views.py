@@ -9,9 +9,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from .forms import *
+from django.contrib.auth.models import User
 
 
-from .models import RegistroAsistencia,InformacionExtraUsuario,Tecnologico
+from .models import *
 
 
 # Create your views here.
@@ -28,7 +30,10 @@ def horario(request):
 def credencial(request):
     firstName = request.user.first_name
     lastName = request.user.last_name
-    extraInfo = InformacionExtraUsuario.objects.get(user=request.user)
+    try:
+        extraInfo = InformacionExtraUsuario.objects.get(user=request.user)
+    except:
+        extraInfo = None
 
     if request.method == "POST":
         weasyprint_settings = {
@@ -88,3 +93,67 @@ def registroAsistencia(request, id):
     
     return render(request, 'registroAsistencia.html', {})
 
+@login_required(login_url='/login/')
+def perfil(request):
+    user = request.user
+    hasInfo = False
+    if(request.method == "GET"):
+        try:
+            extraInfo = InformacionExtraUsuario.objects.get(user=user)
+            hasInfo = True
+        except:
+            extraInfo = None
+            hasInfo = False
+        
+        context={
+            'user':user,
+            'extraInfo':extraInfo,
+            'hasInfo':hasInfo,
+        }
+        return render(request, 'perfil.html', context)
+    else:
+        return render(request, 'perfil.html', {})
+    
+def registro(request):
+    if(request.method == "GET"):
+        try:
+            tecnologico_choices = [(t.pk, t.nombreTec) for t in Tecnologico.objects.all()]
+            form = UserRegistrationForm(tecnologico_choices=tecnologico_choices)
+        except:
+            form = UserRegistrationForm()
+        return render(request, 'account/register.html', {'form':form})
+    else:
+        try:
+            tecnologico_choices = [(t.pk, t.nombreTec) for t in Tecnologico.objects.all()]
+        except:
+            tecnologico_choices=None
+        form = UserRegistrationForm(request.POST, tecnologico_choices=tecnologico_choices)
+        print("entra post")
+        if form.is_valid():
+            print("Formulario valido")
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            modalidad = form.cleaned_data['modalidad']
+            tipo_usuario = form.cleaned_data['tipo_usuario']
+            tecOrigen = form.cleaned_data['tecnologico']
+            email = form.cleaned_data['email']
+            cellphone = form.cleaned_data['cellphone']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            try:
+                user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
+                user.save()
+                extraInfo = InformacionExtraUsuario.objects.create(
+                    user=user,
+                    modalidad=modalidad,
+                    tipoUsuario=tipo_usuario,
+                    tecOrigen=Tecnologico.objects.get(pk=tecOrigen),
+                    hotel = Hotel.objects.get(nombreHotel="Hotel Villa Montaña"),
+                )
+                extraInfo.save()
+                return redirect('indexFormal')
+            except:
+                return redirect('registro')
+        else:
+            print("Formulario invalido")
+            return redirect('registro')

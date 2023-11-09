@@ -65,7 +65,7 @@
             </li> 
             <li class="nav-item">
               <a class="nav-link" href="{% url 'horario' %}" style="font-size: 1.3rem;"
-              ><i class="bi bi-calendar3"></i> Programa del Evento</a
+              ><i class="bi bi-calendar3"></i> Programa</a
               >
             </li> 
             {% if user.is_authenticated %}
@@ -73,6 +73,9 @@
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'credencial' %}" style="font-size: 1.3rem;"><i class="bi bi-person-vcard-fill"></i> Gafete</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'perfil' %}" style="font-size: 1.3rem;"><i class="bi bi-person-circle"></i> Perfil</a>
+              </li> 
               <li class="nav-item">
                   <a class="nav-link" href="{% url "logout" %}" style="font-size: 1.3rem;"><i class="bi bi-box-arrow-in-left"></i> Logout</a>
               </li>

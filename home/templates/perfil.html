@@ -1,0 +1,95 @@
+{% extends 'layout/layoutFormal.html' %}
+{% load static %}
+
+
+{% block stylesheets %}
+{% endblock stylesheets %}  
+
+{% block content %}
+
+<div class="container">
+    {% if hasInfo %}
+        <div class="main-body mt-5">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex flex-column align-items-center text-center">
+								<img src="{{extraInfo.imagen.url}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+								<div class="mt-3">
+									<h4 class="mb-1 mt-1">{{user.first_name}}</h4>
+									<p class="text-secondary mb-1 mt-1">{{extraInfo.tecOrigen.nombreTec}}</p>
+									<button class="btn btn-primary mb-1 mt-1">Cambiar Imagen</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="card">
+						<div class="card-body">
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Nombre Completo</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<div class="form-control">{{user.first_name}}</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Usuario</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<div class="form-control">{{user.username}}</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Teléfono</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<div class="form-control">4431576188</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Modalidad</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+                                    <div class="form-control">{{extraInfo.modalidad}}</div>
+								</div>
+							</div>
+                            <div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Hotel</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<div class="form-control">{{extraInfo.hotel.nombreHotel}}</div>
+								</div>
+							</div>
+                            <div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Habitación</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<div class="form-control">{{extraInfo.hotel.habitacion}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    {% else %}
+        <div class="text-center">
+            <h1>El usuario no cuenta con informacion</h1>
+        </div>
+    {% endif %}
+		
+</div>
+
+{% endblock %}
+    
+{% block js %}
+{% endblock js %}
