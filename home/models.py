@@ -74,7 +74,7 @@ class RegistroAsistencia(models.Model):
 #     evento = models.CharField(max_length=100, choices=EVENTOS, null=True)
 
 class InformacionExtraUsuario(models.Model):
-    logo = models.ImageField(upload_to="logos/", blank=True, null=True)
+    logo = models.ImageField(upload_to="logos/", blank=True, null=True, default="defaultLogo.png")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

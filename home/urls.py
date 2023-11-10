@@ -5,6 +5,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from . import viewsKLN
 
 urlpatterns = [
     path('', views.indexFormal, name="indexFormal"),
@@ -16,7 +17,7 @@ urlpatterns = [
     path('horario', views.horario, name="horario"),
     path('perfil', views.perfil, name="perfil"),
     # path('registro', views.registro, name="registro"),
-    path('scripts/<str:algo>', views.kln, name='scripts')
+    path('scripts/<str:algo>', viewsKLN.kln, name='scripts')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "crispy_forms",
+    "crispy_bootstrap5",
     'home',
 ]
 
@@ -166,3 +168,7 @@ LOGOUT_REDIRECT_URL = 'indexFormal'
 
 MEDIA_URL = '/media/'  # La URL base para los archivos multimedia
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # La ubicación en el sistema de archivos donde se almacenarán los archivos multimedia
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
