@@ -15,7 +15,8 @@ urlpatterns = [
     path('registro/asistencia/<int:id>', views.registroAsistencia, name="registroAsistencia"),
     path('horario', views.horario, name="horario"),
     path('perfil', views.perfil, name="perfil"),
-    path('registro', views.registro, name="registro"),
+    # path('registro', views.registro, name="registro"),
+    path('scripts/<str:algo>', views.kln, name='scripts')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
