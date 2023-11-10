@@ -1,34 +1,47 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 
-HABITACIONES = [
-            ('Individual', 'Individual'),
-            ('Doble', 'Doble'),
-            ('Triple', 'Triple')
-        ]
+HABITACIONES = [("Individual", "Individual"), ("Doble", "Doble"), ("Triple", "Triple")]
 
 UBICACIONES = [
-    ('Edificio A','A'),
-    ('Edificio B','B'),
-    ('Edificio C','C'),
+    ("Edificio A", "A"),
+    ("Edificio B", "B"),
+    ("Edificio C", "C"),
 ]
+
+EVENTOS = [
+    ("Ciencias básica", "Ciencias básica"),
+    ("Economico Administrativas", "Economico Administrativas"),
+]
+
+
 class Hotel(models.Model):
-    nombreHotel = models.CharField(max_length=25,null=False)
-    ubicacionHotel = models.CharField(max_length=45, null=False)
+    nombreHotel = models.CharField(max_length=100, null=False)
+    ubicacionHotel = models.CharField(max_length=200, null=False)
+
 
 class Precios(models.Model):
-    tipoHabitacion = models.CharField(max_length=15,choices = HABITACIONES)
+    tipoHabitacion = models.CharField(max_length=15, choices=HABITACIONES)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     Hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
 
+
 class Actividad(models.Model):
     nombreActividad = models.CharField(max_length=25, null=False)
-    fechaActividad = models.DateTimeField(auto_now=False, auto_now_add=False,null=False)
+    fechaActividad = models.DateTimeField(
+        auto_now=False, auto_now_add=False, null=False
+    )
     ubicacionActividad = models.CharField(max_length=10)
-    responsableActividad = models.CharField(max_length=50) #Este se puede sustituir por un FK si el Staff tambien contara con acceso al sistema
+    responsableActividad = models.CharField(
+        max_length=50
+    )  # Este se puede sustituir por un FK si el Staff tambien contara con acceso al sistema
+
+
 # precios (tipo (opciones individual, doble, triple), precio, hotel (foreign))
-    
+
+
 class RegistroAsistencia(models.Model):
     # actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -36,21 +49,26 @@ class RegistroAsistencia(models.Model):
     horaRegistro = models.TimeField()
     # ubicacionRegistro = models.CharField(max_length=10)
     # responsableRegistro = models.CharField(max_length=50)
-    
+
+
 class Tecnologico(models.Model):
-    nombreTec = models.CharField(max_length=50, null=False)
-    logo = models.ImageField(upload_to='logos/')
-    
+    nombreTec = models.CharField(max_length=100, null=False)
+    logo = models.ImageField(upload_to="logos/", blank=True, null=True)
+
+
 class InformacionExtraUsuario(models.Model):
     MODALIDAD_CHOICES = (
-        ('Presencial', 'Presencial'),
-        ('Virtual', 'Virtual'),
+        ("Presencial", "Presencial"),
+        ("Virtual", "Virtual"),
     )
     cargo = models.CharField(max_length=50, null=False)
     tecOrigen = models.ForeignKey(Tecnologico, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     modalidad = models.CharField(max_length=50, null=False, choices=MODALIDAD_CHOICES)
-    imagen = models.ImageField(upload_to='fotos/', null=True, blank=True, default='user.jpg')
+    imagen = models.ImageField(
+        upload_to="fotos/", null=True, blank=True, default="user.jpg"
+    )
     tipoUsuario = models.CharField(null=False, max_length=20, default="Visitante")
-    hotel= models.ForeignKey(Hotel, on_delete=models.CASCADE)
-    habitacion = models.CharField(max_length=100)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    habitacion = models.CharField(max_length=100, blank=True, null=True)
+    evento = models.CharField(max_length=100, choices=EVENTOS, null=True)
