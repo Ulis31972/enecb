@@ -99,21 +99,73 @@ def perfil(request):
     user = request.user
     hasInfo = False
     if(request.method == "GET"):
+        form = CambiarLogoForm()
         try:
             extraInfo = InformacionExtraUsuario.objects.get(user=user)
             hasInfo = True
         except:
             extraInfo = None
             hasInfo = False
-        
         context={
             'user':user,
             'extraInfo':extraInfo,
             'hasInfo':hasInfo,
+            'form':form
         }
         return render(request, 'perfil.html', context)
     else:
-        return render(request, 'perfil.html', {})
+        try:
+            extraInfo = InformacionExtraUsuario.objects.get(user=user)
+            form = CambiarLogoForm(request.POST, request.FILES, instance=extraInfo)
+            hasInfo = True
+        except:
+            extraInfo = None
+            form = CambiarLogoForm(request.POST, request.FILES)
+            hasInfo = False
+        
+        try:
+            if form.is_valid():
+                form.save()
+            else:
+                print("Formulario invalido")
+        except:
+            print("Error al guardar")
+
+        return redirect('perfil')
+    
+@login_required(login_url='/login/')
+def listaUsuariosTecnologicos(request):
+    try:
+        tecnologico = InformacionExtraUsuario.objects.get(user=request.user)
+        usuarios = Usuarios.objects.filter(informacionTec=tecnologico).order_by('id')
+    except:
+        usuarios = None
+    
+    # if request.method == 'POST':
+    #     form = UsuariosForm(request.POST, request.FILES, instance=usuario)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('detalle_usuario', id_usuario=id_usuario)
+    else:
+        form = UsuariosForm()
+
+    return render(request, 'listaUsuariosTecnologicos.html', {
+        'form': form,
+        'usuarios':usuarios
+        })
+
+@login_required(login_url='/login/')
+def actualizarUsuario(request, id):
+    usuario = Usuarios.objects.get(id=id)
+    if request.method == 'POST':
+        form = UsuariosForm(request.POST, request.FILES, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('listaUsuariosTecnologicos')
+        else:
+            print("no es valido")
+    else:
+        return redirect('listaUsuariosTecnologicos')
     
 # def registro(request):
 #     if(request.method == "GET"):

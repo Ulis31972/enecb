@@ -1,0 +1,135 @@
+{% extends 'layout/layoutFormal.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block stylesheets %}
+{% endblock stylesheets %}
+{% block content %}
+
+<div class="container-fluid mt-4">
+  <div class="card shadow mb-3 bg-body-tertiary">
+    <div class="card-body">
+      <h5 class="card-title mb-3">
+        Participantes del {{ request.user.first_name }}
+      </h5>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Curp</th>
+              <th scope="col">Teléfono de emergencia</th>
+              <th scope="col">Condición (médica)</th>
+              <th scope="col">Tipo de usuarios</th>
+              <th scope="col">Hotel</th>
+              <th scope="col">Habitación</th>
+              <th scope="col">Foto</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+              <th>{{usuario.pk}}</th>
+              <td>{{usuario.nombre}}</td>
+              <td>{{usuario.curp}}</td>
+              <td>{{usuario.telefonoEmergencia}}</td>
+              <td>{{usuario.condicion}}</td>
+              <td>{{usuario.tipoUsuario}}</td>
+              <td>{{usuario.hotel}}</td>
+              <td>{{usuario.habitacion}}</td>
+              <td>
+                <img
+                  src="{{usuario.imagen.url}}"
+                  alt="#"
+                  class="rounded-circle p-1"
+                  width="110"
+                  height="110"
+                  style="object-fit: cover; object-position: center; "
+                />
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick="llenarFormulario('{{usuario.pk}}', '{{usuario.nombre}}', '{{usuario.curp}}', '{{usuario.telefonoEmergencia}}', '{{usuario.condicion}}')"
+                >
+                  Editar
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Actualizar datos
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action=""
+          method="post"
+          id="formUsuario"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %} 
+          {{ form|crispy }}
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+  function llenarFormulario(id, nombre, curp, telefonoEmergencia, condicion) {
+    // Actualizar el action del formulario
+    var form = document.getElementById("formUsuario");
+    form.action = "/lista/usuarios/" + id + "/";
+
+    // Llenar los valores en los inputs
+    document.getElementById("id_nombre").value = nombre;
+    document.getElementById("id_curp").value = curp;
+    document.getElementById("id_telefonoEmergencia").value =
+      telefonoEmergencia === "None" ? "" : telefonoEmergencia;
+    document.getElementById("id_condicion").value =
+      condicion === "None" ? "" : condicion;
+  }
+</script>
+{% endblock js %}

@@ -1,6 +1,6 @@
 {% extends 'layout/layoutFormal.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block stylesheets %}
 {% endblock stylesheets %}  
@@ -15,11 +15,13 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex flex-column align-items-center text-center">
-								<img src="{{extraInfo.imagen.url}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+								<img src="{{extraInfo.logo.url}}" alt="Logo" class="rounded-circle p-1 bg-primary" width="110">
 								<div class="mt-3">
 									<h4 class="mb-1 mt-1">{{user.first_name}}</h4>
 									<p class="text-secondary mb-1 mt-1">{{extraInfo.tecOrigen.nombreTec}}</p>
-									<button class="btn btn-primary mb-1 mt-1">Cambiar Imagen</button>
+									<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+										Cambiar Logo
+									</button>
 								</div>
 							</div>
 						</div>
@@ -30,7 +32,7 @@
 						<div class="card-body">
 							<div class="row mb-3">
 								<div class="col-sm-3">
-									<h6 class="mb-0">Nombre Completo</h6>
+									<h6 class="mb-0">Nombre de la Institución</h6>
 								</div>
 								<div class="col-sm-9 text-secondary">
 									<div class="form-control">{{user.first_name}}</div>
@@ -44,38 +46,6 @@
 									<div class="form-control">{{user.username}}</div>
 								</div>
 							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Teléfono</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<div class="form-control">4431576188</div>
-								</div>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Modalidad</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-                                    <div class="form-control">{{extraInfo.modalidad}}</div>
-								</div>
-							</div>
-                            <div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Hotel</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<div class="form-control">{{extraInfo.hotel.nombreHotel}}</div>
-								</div>
-							</div>
-                            <div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Habitación</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<div class="form-control">{{extraInfo.hotel.habitacion}}</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -86,6 +56,28 @@
             <h1>El usuario no cuenta con informacion</h1>
         </div>
     {% endif %}
+
+	{% comment %} Modal Cambiar Logo {% endcomment %}
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Logo</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form method="post" enctype="multipart/form-data">
+					<div class="modal-body">
+							{% csrf_token %}
+							{{ form|crispy }}						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Guardar Cambios</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 		
 </div>
 

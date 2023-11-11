@@ -20,6 +20,9 @@ EVENTOS = [
 class Hotel(models.Model):
     nombreHotel = models.CharField(max_length=100, null=False)
     ubicacionHotel = models.CharField(max_length=200, null=False)
+    
+    def __str__(self):
+        return self.nombreHotel
 
 
 class Precios(models.Model):
@@ -76,6 +79,9 @@ class RegistroAsistencia(models.Model):
 class InformacionExtraUsuario(models.Model):
     logo = models.ImageField(upload_to="logos/", blank=True, null=True, default="defaultLogo.png")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.user.first_name
 
 
 class Usuarios(models.Model):
@@ -91,7 +97,7 @@ class Usuarios(models.Model):
     nombre = models.CharField(max_length=200, null=False)
     curp = models.CharField(max_length=20, null=False)
     telefonoEmergencia = models.CharField(max_length=15, blank=True, null=True)
-    condicion = models.CharField(max_length=200, blank=True, null=True)
+    condicion = models.TextField(blank=True, null=True)
     informacionTec= models.ForeignKey(InformacionExtraUsuario, on_delete=models.CASCADE)
     tipoUsuario = models.CharField(null=False, max_length=100, default="Visitante", choices=TIPOSUSUARIO)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True, null=True)

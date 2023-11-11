@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from .models import *
 
 def kln(request, algo):
     if (algo == "KLN"):
@@ -297,5 +298,12 @@ def kln(request, algo):
                 # Manejar otras excepciones que puedan ocurrir durante la consulta
                 print(f"Error: {str(e)}")
         return HttpResponse('Bien')
-
+    elif (algo == "LOGO"):
+        infoUsers = InformacionExtraUsuario.objects.all()
+        logodef= "defaultLogo.png"
+        for infoUser in infoUsers:
+            infoUser.logo = logodef
+            infoUser.save()
+        return HttpResponse('Bien')
+    
     return HttpResponse('Mal')
