@@ -10,7 +10,7 @@ from . import viewsKLN
 urlpatterns = [
     path('', views.indexFormal, name="indexFormal"),
     path('index', views.index, name="index"),
-    path('credencial', views.credencial, name="credencial"),
+    path('credencial/<int:id>', views.credencial, name="credencial"),
     path('login/', views.loginView, name="login"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('registro/asistencia/<int:id>', views.registroAsistencia, name="registroAsistencia"),

@@ -28,9 +28,12 @@ def horario(request):
     return render(request, 'horario.html',{})
 
 @login_required(login_url='/login/')
-def credencial(request):
-    firstName = request.user.first_name
-    lastName = request.user.last_name
+def credencial(request, id):
+    try:
+        usuario = Usuarios.objects.get(id=id)
+    except:
+        usuario = None
+    
     try:
         extraInfo = InformacionExtraUsuario.objects.get(user=request.user)
     except:
@@ -61,8 +64,10 @@ def credencial(request):
         response['Content-Disposition'] = 'attachment; filename="archivo.pdf"'
         return response
     else:
-        context = {"firstName": firstName, "lastName": lastName, "extraInfo": extraInfo}
-        return render(request, 'credenciales/mostrarCredenciales.html', context=context)
+        context = {
+            "usuario":usuario, 
+        }
+        return render(request, 'credenciales/mostrarCredenciales.html', context)
     
 def loginView(request):
     if request.method == 'POST':

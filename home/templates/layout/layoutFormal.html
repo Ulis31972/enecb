@@ -73,9 +73,9 @@
             </li> 
             {% if user.is_authenticated %}
               <!-- Mostrar las opciones para usuarios autenticados -->
-              <!-- <li class="nav-item">
+              {% comment %} <li class="nav-item">
                   <a class="nav-link" href="{% url 'credencial' %}" style="font-size: 1.3rem;"><i class="bi bi-person-vcard-fill"></i> Gafete</a>
-              </li> -->
+              </li>  {% endcomment %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'listaUsuariosTecnologicos' %}" ><i class="bi bi-people"></i> Usuarios</a>
               </li> 

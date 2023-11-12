@@ -9,15 +9,14 @@
   <div class="contenido_credencial">
     <div class="datos_credencial">
       <div class="container_foto">
-        <img src="{{extraInfo.imagen.url}}" alt="Su Foto" />
+        <img src="{{usuario.imagen.url}}" alt="Su Foto" />
       </div>
       <div class="datos_personales">
         <div class="datos_nombre">
-          <p class="nombre">{{firstName}}</p>
-          <p class="apellidos">{{lastName}}</p>
+          <p class="nombre">{{usuario.nombre}}</p>
         </div>
         <div class="datos_cargo">
-          <p class="title_cargo">{{extraInfo.cargo}}</p>
+          <p class="title_cargo">{{usuario.tipoUsuario}}</p>
         </div>
       </div>
     </div>
@@ -25,16 +24,16 @@
       <div class="tec_procedencia">
         <div class="logo_tec_procedencia">
           <img
-            src="{{extraInfo.tecOrigen.logo.url }}"
+            src="{{usuario.informacionTec.logo.url }}"
             alt="Logotipo Tec de procedencia"
           />
         </div>
         <div class="texto_procedencia m-1">
-          <p>{{extraInfo.tecOrigen.nombreTec}}</p>
+          <p>{{usuario.informacionTec.user.first_name}}</p>
         </div>
       </div>
       <div class="logo_enecb">
-        <img src="{% static 'img/imgActualizadas/ENECB 2023 LOGO.png' %}" alt="Logo ENECB 2023" />
+        <img src="{% static 'img/EnecbLogoCredencial.png' %}" alt="Logo ENECB 2023" />
       </div>
     </div>
   </div>
@@ -48,7 +47,7 @@
       preserveAspectRatio="none"
       transform="rotate(180) "
     >
-      {% if extraInfo.tipoUsuario == "Visitante" %}
+      {% if usuario.tipoUsuario == "Visitante" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
           style="fill: #b0eb49"
@@ -60,7 +59,7 @@
         ></path>
       </g>
       {% endif %}
-      {% if extraInfo.tipoUsuario == "Autoridad" %}
+      {% if usuario.tipoUsuario == "Autoridad" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
           style="fill: #4074b5"
@@ -72,7 +71,7 @@
         ></path>
       </g>
       {% endif %}
-      {% if extraInfo.tipoUsuario == "Ciencias Basicas" %}
+      {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
           style="fill: #53ba4c"
@@ -84,7 +83,7 @@
         ></path>
       </g>
       {% endif %}
-      {% if extraInfo.tipoUsuario == "Organizadores" %}
+      {% if usuario.tipoUsuario == "Organizador" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
           style="fill: #d6375f"
