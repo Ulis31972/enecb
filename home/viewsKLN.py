@@ -305,5 +305,12 @@ def kln(request, algo):
             infoUser.logo = logodef
             infoUser.save()
         return HttpResponse('Bien')
+    elif(algo == "Asesor"):
+        infoUsers = InformacionExtraUsuario.objects.all()
+        for infoUser in infoUsers:
+            tipos_usuarios_distintos = Usuarios.objects.filter(informacionTec=infoUser).values('tipoUsuario').distinct()
+            print("tec: "+str(infoUser.pk)+" tipos: "+str(tipos_usuarios_distintos))
+            
+        return HttpResponse('Bien')
     
     return HttpResponse('Mal')
