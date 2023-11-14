@@ -30,6 +30,8 @@ p,h1,h2,h3{
   flex-direction: column;
 }
 .container_foto {
+  background-size: cover;
+  background-position: center;
   margin: 0.5rem 1.5rem;
   width: 7rem;
   height: 9.28rem;
@@ -63,9 +65,11 @@ p,h1,h2,h3{
   flex-direction: column;
 }
 .logo_tec_procedencia {
+  background-position: center;
+  background-size: cover;
   width: 7rem;
-  height: 1.5rem;
-  margin-bottom: 5rem;
+  height: 7rem;
+  margin-bottom: 0.5rem;
 }
 .logo_tec_procedencia img {
  width: 100%;
@@ -102,5 +106,7 @@ p,h1,h2,h3{
   border-top-right-radius: 2rem;
 }
 .decorador_frente{
+  position: absolute;
+  bottom: 0;
   margin-top: 2rem;
 }

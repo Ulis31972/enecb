@@ -1,30 +1,60 @@
-{% extends 'layout/layout.html' %}
+{% extends 'layout/layoutFormal.html' %}
 {% load static %}
-
 {% block stylesheets %}
-    <link rel="stylesheet" href="{% static 'css/registroAsistencia/styles.css' %}">
-{% endblock stylesheets %}  
+<link
+  rel="stylesheet"
+  href="{% static 'css/registroAsistencia/styles.css' %}"
+/>
+{% endblock stylesheets %} {% block content %}
 
-{% block content %}
-
-<div class="container mt-5 pt-5">
-    <div class="row mt-5" >
-        <div class="col-auto mx-auto">
-            <div class="card text-center">
-                <div class="card-header">
-                  Registro de asistencia
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Asistencia Registrada con Éxito</h5>
-                  <p class="card-text mt-3 mb-0">Nombre: Alan Garcia Diaz</p>
-                  <p class="card-text my-0">Fecha: 12/12/2020</p>
-                  <p class="card-text my-0">Hora: 12:00</p>
-                  <a href="#" class="btn btn-primary mt-3">Aceptar</a>
-                </div>
-              </div>
+{% comment %} <div class="container mt-5 pt-5">
+  <div class="row mt-5">
+    <div class="col-auto mx-auto">
+      <div class="card text-center">
+        <div class="card-header">Registro de asistencia</div>
+        <div class="card-body">
+          <h5 class="card-title">Asistencia Registrada con Éxito</h5>
+          <p class="card-text mt-3 mb-0">Nombre: Alan Garcia Diaz</p>
+          <p class="card-text my-0">Fecha: 12/12/2020</p>
+          <p class="card-text my-0">Hora: 12:00</p>
+          <a href="#" class="btn btn-primary mt-3">Aceptar</a>
         </div>
+      </div>
     </div>
-{% endblock %}
+  </div>
+</div> {% endcomment %}
 
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-6 mx-auto">
+      <div class="card shadow-lg mb-3 bg-body-tertiary">
+        {% if usuario %}
+          <div class="card-header text-center successRegister">
+        {% else %}
+          <div class="card-header text-center wrongRegister">
+        {% endif %}
+          <h3>
+            Registro de asistencia
+          </h3>
+      </div>
+        <div class="card-body">
+          {% if usuario %}
+            <h5 class="card-title">Asistencia Registrada con Éxito</h5>
+            <p class="card-text mt-3 mb-0">Nombre: {{ usuario.nombre }}</p>
+            <p class="card-text my-0">Fecha: {{ fecha }}</p>
+            <p class="card-text my-0">Hora: {{ hora }}</p>
+          {% else %}
+            <h5 class="card-title">Asistencia Registrada sin Éxito</h5>
+            <p class="card-text mt-3 mb-0">{{ motivo }}</p>
+          {% endif %}
+          <div class="d-grid gap-2">
+            <a href="{% url "registroLista" None %}" class="btn btn-primary mt-3">Aceptar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
 {% block js %}
 {% endblock js %}

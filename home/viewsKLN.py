@@ -275,7 +275,6 @@ def kln(request, algo):
             {"nombre": "PAOLA MARTINEZ GARCIA", "curp": "magp030521mgtrrla2", "informacionTec": "Instituto Tecnológico Superior de Abasolo", "tipoUsuario": "Participante Económico Administrativo"}
         ]
 
-
         # Itera sobre los datos y crea instancias de Usuarios
         for dato in datos:
             try:
@@ -307,10 +306,43 @@ def kln(request, algo):
         return HttpResponse('Bien')
     elif(algo == "Asesor"):
         infoUsers = InformacionExtraUsuario.objects.all()
+        hotelq = Hotel.objects.get(nombreHotel = "Best Western PLUS Gran Hotel Morelia")
         for infoUser in infoUsers:
             tipos_usuarios_distintos = Usuarios.objects.filter(informacionTec=infoUser).values('tipoUsuario').distinct()
-            print("tec: "+str(infoUser.pk)+" tipos: "+str(tipos_usuarios_distintos))
-            
+            print("tec: "+str(infoUser.user.first_name)+" tipos: "+str(tipos_usuarios_distintos))
+            for asesor in tipos_usuarios_distintos:
+                usuario= Usuarios.objects.create(informacionTec=infoUser, tipoUsuario="Asesor", hotel=hotelq)
+        return HttpResponse('Bien')
+    elif(algo == "UsuariosKalan"):
+        datos = [
+            {"nombre": "JUAN PABLO JUAREZ CASTILLO", "curp": "magp030521mgtrrla2", "informacionTec": "ENECB", "tipoUsuario": "Participante Económico Administrativo"},
+            {"nombre": "ARTURO MARTINEZ FUENTES", "curp": "magp030521mgtrrla3", "informacionTec": "ENECB", "tipoUsuario": "Participante Económico Administrativo"},
+            {"nombre": "HECTOR DAVID REYES REYES", "curp": "magp030521mgtrrla4", "informacionTec": "ENECB", "tipoUsuario": "Participante Ciencias Básicas"},
+            {"nombre": "DIEGO RUIZ AYALA", "curp": "magp030521mgtrrla5", "informacionTec": "ENECB", "tipoUsuario": "Participante Ciencias Básicas"},
+            {"nombre": "ANGEL GALLEGOS PEREZ", "curp": "magp030521mgtrrla6", "informacionTec": "ENECB", "tipoUsuario": "Participante Ciencias Básicas"},
+        ]
+        
+        # Itera sobre los datos y crea instancias de Usuarios
+        for dato in datos:
+            try:
+                infoTec = InformacionExtraUsuario.objects.get(user__first_name=dato["informacionTec"])
+                hotelq = Hotel.objects.get(nombreHotel = "Best Western PLUS Gran Hotel Morelia")
+                # Realiza las operaciones necesarias con infoTec
+                usuario = Usuarios.objects.create(
+                    nombre=dato["nombre"],
+                    curp=dato["curp"].upper(),
+                    informacionTec=infoTec,
+                    tipoUsuario=dato["tipoUsuario"],
+                    hotel= hotelq
+                )
+                print(f'Usuario creado para el usuario "{usuario.nombre}".')
+            except ObjectDoesNotExist as i:
+                # Manejar la excepción cuando el objeto no existe
+                print("El objeto InformacionExtraUsuario no existe para el nombre proporcionado." + dato["informacionTec"])
+                print(i)
+            except Exception as e:
+                # Manejar otras excepciones que puedan ocurrir durante la consulta
+                print(f"Error: {str(e)}")
         return HttpResponse('Bien')
     
     return HttpResponse('Mal')

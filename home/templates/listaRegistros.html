@@ -1,0 +1,245 @@
+{% extends 'layout/layoutFormal.html' %}
+{% load static %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% block stylesheets %}
+{% endblock stylesheets %}
+{% block content %}
+
+{% if msg %}
+<div class="container mt-3">
+  {% if msgType %}
+  <div class="alert alert-{{msgType}} fade show alert-dismissible" role="alert">
+    {% else %}
+    <div class="alert alert-warning fade show" role="alert">
+      {% endif %}
+    <div>
+      <strong>Aviso.</strong> {{ msg }}
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+{% endif %}
+
+<div class="container-fluid mt-4">
+    <div class="card shadow mb-3 bg-body-tertiary">
+        <div class="card-body">
+          <div>
+
+            <h5 class="card-title mb-3">
+              Participantes del {{ request.user.first_name }}
+            </h5>
+            <button
+              type="button"
+              class="btn btn-primary mb-2"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal2"
+            >
+                <i class="bi bi-plus"></i>
+            </button>
+          </div>
+                <table class="table table-striped table-bordered display responsive nowrap" id="usersTable" width="100%">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Técnológico</th>
+                            <th scope="col">Tipo de usuario</th>
+                            <th scope="col">Registros</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for usuario in usuarios %}
+                        <tr>
+                            <th>{{usuario.pk}}</th>
+                            <td>{{usuario.nombre}}</td>
+                            <td style="white-space: normal;">{{ usuario.informacionTec.user.first_name }}</td>
+                            <td style="white-space: normal;">{{usuario.tipoUsuario}}</td>
+                            <td>
+                                {% if usuario.registroasistencia_set.all %}
+                                    <ul>
+                                        {% for registro in usuario.registroasistencia_set.all %}
+                                            <li>{{ registro.fechaRegistro|date:_("F j, Y")|title }}, 
+                                            {{ registro.horaRegistro|time:_("P") }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p>No hay registros de asistencia para este usuario.</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'registroAsistencia' usuario.pk %}" class="btn btn-primary"><i class="bi bi-clipboard2-check"></i></a>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    onClick="llenarFormulario('{{usuario.pk}}', '{{usuario.nombre}}', '{{usuario.curp}}', '{{usuario.telefonoEmergencia}}', '{{usuario.condicion}}', '{{ usuario.informacionTec.pk }}', '{{usuario.tipoUsuario}}', '{{usuario.hotel.pk}}', '{{usuario.habitacion}}')"
+                                >
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                </table>
+            {% comment %} </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal Update-->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Actualizar
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action=""
+          method="post"
+          id="formUsuario"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %} 
+          {{ form|crispy }}
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Registrar-->
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModal2Label"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModal2Label">
+          Registrar
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="{% url "registroListaCrear" %}"
+          method="post"
+          id="formUsuario2"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %} 
+          {{ form2|crispy }}
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
+{% block js %}
+
+<script>
+    $(document).ready(function() {
+        $('#usersTable').DataTable({
+            "responsive": true, 
+            "order": [], // Desactiva el orden por defecto
+            "searching": true, // Habilita el buscador
+            "lengthMenu": [10, 25, 50, 75, 100], // Opciones para seleccionar cuántas filas mostrar
+            "pageLength": 10, // Número predeterminado de filas por página
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json" // Configura el idioma (puedes cambiarlo según tus necesidades)
+            }
+        });
+    });
+</script>
+
+<script>
+    function llenarFormulario(id, nombre, curp, telefonoEmergencia, condicion, informacionTec, tipoUsuario, hotel, habitacion) {
+      // Actualizar el action del formulario
+      var form = document.getElementById("formUsuario");
+    form.action = "/registro/lista/actualizar/"+id;
+  
+      // Llenar los valores en los inputs
+      document.getElementById("id_nombre").value = nombre;
+      document.getElementById("id_curp").value = curp;
+      document.getElementById("id_telefonoEmergencia").value =telefonoEmergencia === "None" ? "" : telefonoEmergencia;
+      document.getElementById("id_condicion").value =condicion === "None" ? "" : condicion;
+      {% comment %} document.getElementById("id_informacionTec").value = informacionTec; {% endcomment %}
+      $('#id_informacionTec').val(informacionTec);
+      $('#id_informacionTec').trigger('change');
+      document.getElementById("id_tipoUsuario").value = tipoUsuario;
+      document.getElementById("id_hotel").value = hotel;
+      document.getElementById("id_habitacion").value = habitacion;
+    }
+  </script>
+
+  <script>
+    $(document).ready(function() {
+        $('#createFormid_informacionTec').select2({
+          dropdownParent: $('#exampleModal2'),
+          width: 'resolve',
+          {% comment %} theme: "bootstrap-5" {% endcomment %}
+        });
+    });
+     $(document).ready(function() {
+        $('#id_informacionTec').select2({
+          dropdownParent: $('#exampleModal'),
+          width: 'resolve',
+          {% comment %} theme: "bootstrap-5" {% endcomment %}
+        });
+    });
+  </script>
+
+
+{% endblock js %}

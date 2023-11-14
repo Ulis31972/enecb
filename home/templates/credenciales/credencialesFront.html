@@ -8,8 +8,11 @@
   </div>
   <div class="contenido_credencial">
     <div class="datos_credencial">
-      <div class="container_foto">
+      <div class="container_foto" style="background-image: url('{{ usuario.imagen.url }}');">
+        
+        {% comment %}
         <img src="{{usuario.imagen.url}}" alt="Su Foto" />
+        {% endcomment %}
       </div>
       <div class="datos_personales">
         <div class="datos_nombre">
@@ -22,11 +25,15 @@
     </div>
     <div class="informacion_adicional">
       <div class="tec_procedencia">
-        <div class="logo_tec_procedencia">
+        <div class="logo_tec_procedencia" style="background-image: url('{{ usuario.informacionTec.logo.url }}');">
+          
+          {% comment %}
           <img
             src="{{usuario.informacionTec.logo.url }}"
             alt="Logotipo Tec de procedencia"
           />
+          {% endcomment %}
+            
         </div>
         <div class="texto_procedencia m-1">
           <p>{{usuario.informacionTec.user.first_name}}</p>

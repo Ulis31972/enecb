@@ -9,11 +9,14 @@ from . import viewsKLN
 
 urlpatterns = [
     path('', views.indexFormal, name="indexFormal"),
-    path('index', views.index, name="index"),
+    # path('index', views.index, name="index"),
     path('credencial/<int:id>', views.credencial, name="credencial"),
     path('login/', views.loginView, name="login"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('registro/asistencia/<int:id>', views.registroAsistencia, name="registroAsistencia"),
+    path('registro/lista/<str:msg>', views.registroLista, name="registroLista"),
+    path('registro/lista/actualizar/<int:id>', views.registroListaActualizar, name="registroListaActualizar"),
+    path('registro/lista/crear/usuario', views.registroListaCrear, name="registroListaCrear"),
     path('horario', views.horario, name="horario"),
     path('perfil', views.perfil, name="perfil"),
     # path('registro', views.registro, name="registro"),

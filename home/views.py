@@ -1,18 +1,18 @@
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.http import HttpResponse
-from weasyprint import HTML,CSS
 import weasyprint
 from enecb import settings
 import os
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.utils import timezone
 from .forms import *
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
-
+from datetime import datetime, timedelta, timezone
+from django.db.models import Prefetch
+import qrcode
+from PIL import Image
 
 from .models import *
 
@@ -64,8 +64,14 @@ def credencial(request, id):
         response['Content-Disposition'] = 'attachment; filename="archivo.pdf"'
         return response
     else:
+        # qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        # qr.add_data(usuario.user.id)
+        # qr.make(fit=True)
+        # img_qr = qr.make_image(fill='#1b396a', back_color='white')
+        # img_qr_size = img_qr.size
+        
         context = {
-            "usuario":usuario, 
+            "usuario":usuario,
         }
         return render(request, 'credenciales/mostrarCredenciales.html', context)
     
@@ -87,17 +93,128 @@ def loginView(request):
 
 @login_required(login_url='/login/')
 def registroAsistencia(request, id):
-    if request.user.has_perm('home.add_informacionextrausuario'):
+    if not request.user.has_perm('home.add_informacionextrausuario'):
+        return redirect('indexFormal') # TODO: Cambiar a credencial
+    else:
         print("Tiene permisos")
-    fecha_hora_local = timezone.now()
+        
+    try:
+        usuario = Usuarios.objects.get(id=id)
+        fechaActual=datetime.fromtimestamp(datetime.now().timestamp(), timezone(offset=timedelta(hours=-6)))
+        fecha = fechaActual.strftime("%Y-%m-%d")
+        hora = fechaActual.strftime("%H:%M")
+        registro = RegistroAsistencia.objects.create(
+            fechaRegistro = fecha,
+            horaRegistro = hora,
+            user = usuario,
+        )
+        if registro:
+            context = {
+                'usuario':usuario,
+                'fecha':fecha,
+                'hora':hora,
+            }
+        else:
+            context = {
+                'usuario':None,
+                'motivo':'Error desconocido'
+            }
+    except Exception as e:
+        context = {
+            'usuario':None,
+            'motivo':'No existe el usuario'
+        }
+        print(f"Ocurrió una excepción: {e}")
+        
+    return render(request, 'registroAsistencia.html', context=context)
+
+
+@login_required(login_url='/login/')
+@permission_required('home.add_informacionextrausuario', login_url='/')
+def registroLista(request, msg):
+    try:
+        # registros = RegistroAsistencia.objects.all()
+        # usuarios = Usuarios.objects.all()
+        
+        usuarios_con_registros = Usuarios.objects.prefetch_related(
+            Prefetch('registroasistencia_set', queryset=RegistroAsistencia.objects.all())
+        ).all().order_by('id')
+        
+        # for usuario in usuarios_con_registros:
+        #     print(usuario.registroasistencia_set.all())
+    except:
+        usuarios_con_registros = None
+        # usuarios = None
+        
+    form = UsuariosFormPro()
+    form2 = UsuariosFormPro(auto_id="createFormid_%s")
+
+
+    mensaje = None
+    msgType = None
     
-    # registro=RegistroAsistencia.objects.create(
-    #     fechaRegistro = fecha_hora_local.strftime("%d/%m/%Y"),
-    #     horaRegistro = fecha_hora_local.strftime("%H:%M"),
-    #     user_id = id
-    # )
+    if msg == 'exitoUpdateUser':
+        mensaje = '¡Usuario actualizado con exito!'
+        msgType = 'success'
+    elif msg == 'errorUpdateUser':
+        mensaje = '¡Usuario actualizado sin exito!'
+        msgType = 'danger'
+    elif msg == 'errorUpdateExistUser':
+        mensaje = '¡El usuario no existe!'
+        msgType = 'danger'
+    elif msg == 'exitoCreateUser':
+        mensaje = '¡Usuario creado con exito!'
+        msgType = 'success'
+    elif msg == 'errorCreateUser':
+        mensaje = '¡Usuario creado sin exito!'
+        msgType = 'danger'
+        
+        
+    return render(request, 'listaRegistros.html', {
+        'usuarios': usuarios_con_registros,
+        'form': form,
+        'form2': form2,
+        'msg': mensaje,
+        'msgType': msgType,
+    })
     
-    return render(request, 'registroAsistencia.html', {})
+@login_required(login_url='/login/')
+@permission_required('home.add_informacionextrausuario', login_url='/')
+def registroListaActualizar(request, id):
+    if request.method == 'POST':
+        try:
+            usuario = Usuarios.objects.get(id=id)
+            form = UsuariosFormPro(request.POST, request.FILES, instance=usuario)
+            if form.is_valid():
+                form.save()
+                return redirect('registroLista', msg='exitoUpdateUser')
+            else:
+                print("no es valido")
+                return redirect('registroLista', msg='errorUpdateUser')
+        except:
+            return redirect('registroLista', msg='errorUpdateExistUser')
+    else:
+        return redirect('registroLista', msg='none')
+    
+    
+    
+@login_required(login_url='/login/')
+@permission_required('home.add_informacionextrausuario', login_url='/')
+def registroListaCrear(request):
+    if request.method == 'POST':
+        try:
+            form = UsuariosFormPro(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('registroLista', msg='exitoCreateUser')
+            else:
+                print("no es valido")
+                return redirect('registroLista', msg='errorCreateUser')
+        except:
+            return redirect('registroLista', msg='errorCreateUser')
+    else:
+        return redirect('registroLista', msg='none')
+    
 
 @login_required(login_url='/login/')
 def perfil(request):
@@ -145,14 +262,8 @@ def listaUsuariosTecnologicos(request):
         usuarios = Usuarios.objects.filter(informacionTec=tecnologico).order_by('id')
     except:
         usuarios = None
-    
-    # if request.method == 'POST':
-    #     form = UsuariosForm(request.POST, request.FILES, instance=usuario)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('detalle_usuario', id_usuario=id_usuario)
-    else:
-        form = UsuariosForm()
+        
+    form = UsuariosForm()
 
     return render(request, 'listaUsuariosTecnologicos.html', {
         'form': form,

@@ -45,13 +45,6 @@ class Actividad(models.Model):
 # precios (tipo (opciones individual, doble, triple), precio, hotel (foreign))
 
 
-class RegistroAsistencia(models.Model):
-    # actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    fechaRegistro = models.DateTimeField()
-    horaRegistro = models.TimeField()
-    # ubicacionRegistro = models.CharField(max_length=10)
-    # responsableRegistro = models.CharField(max_length=50)
 
 
 # class Tecnologico(models.Model):
@@ -90,19 +83,34 @@ class Usuarios(models.Model):
         ("Organizador", "Organizador"),
         ("Autoridad", "Autoridad"),
         ("Asesor", "Asesor"),
-        ("Participante Ciencias Básicas", "Participante Ciencias Básicass"),
+        ("Participante Ciencias Básicas", "Participante Ciencias Básicas"),
         ("Participante Económico Administrativo", "Participante Económico Administrativo")
     )
-
-    nombre = models.CharField(max_length=200, null=False)
-    curp = models.CharField(max_length=20, null=False)
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=200, null=True, blank=True)
+    curp = models.CharField(max_length=20, null=True, blank=True)
     telefonoEmergencia = models.CharField(max_length=15, blank=True, null=True)
     condicion = models.TextField(blank=True, null=True)
-    informacionTec= models.ForeignKey(InformacionExtraUsuario, on_delete=models.CASCADE)
+    informacionTec = models.ForeignKey(InformacionExtraUsuario, on_delete=models.CASCADE)
     tipoUsuario = models.CharField(null=False, max_length=100, default="Visitante", choices=TIPOSUSUARIO)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, blank=True, null=True)
     habitacion = models.CharField(max_length=100, blank=True, null=True)
     imagen = models.ImageField(upload_to="fotos/", null=True, blank=True, default="user.jpg")
+
+    def __str__(self):
+        return str(self.pk)+" - "+ str(self.nombre) +" - "+ str(self.tipoUsuario)
+    
+class RegistroAsistencia(models.Model):
+    # actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE)
+    user = models.ForeignKey(Usuarios, on_delete=models.CASCADE)
+    fechaRegistro = models.DateTimeField()
+    horaRegistro = models.TimeField()
+    # ubicacionRegistro = models.CharField(max_length=10)
+    # responsableRegistro = models.CharField(max_length=50)
     
     # Avientate unas migraciones, voy a desayunar en fa y regreso, checa que todo jale bien
     # ok
+    # Ya vamonos
+    # Apoyo la idea
+    # El pp se la come
+    # La neta padrino

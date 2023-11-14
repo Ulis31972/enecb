@@ -1,6 +1,7 @@
 body{
     /* background-image: url("https://elcomercio.pe/resizer/XFCbfKUcN6oSlYiQS_xvAiwmDtE=/620x0/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/PCSDBRA6NRBINEWLWYHVP7PPAM.jpg"); */
-    background-image: url(https://www.talent-land.mx/wp-content/uploads/2023/05/tl-2024-hero-bg.jpg);
+    /* background-image: url(https://www.talent-land.mx/wp-content/uploads/2023/05/tl-2024-hero-bg.jpg); */
+    background: linear-gradient(to right, #333399, #246ce0);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -11,6 +12,10 @@ body{
     background-color: rgba(255, 255, 255, 0.75);
 }
 
-.card-header{
+.successRegister{
     background-color: rgba(38, 255, 19, 0.5);
+}
+
+.wrongRegister{
+    background-color: rgba(255, 0, 0, 0.5);
 }
