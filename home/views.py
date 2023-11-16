@@ -64,12 +64,26 @@ def credencial(request, id):
         response['Content-Disposition'] = 'attachment; filename="archivo.pdf"'
         return response
     else:
-        # qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        # qr.add_data(usuario.user.id)
-        # qr.make(fit=True)
-        # img_qr = qr.make_image(fill='#1b396a', back_color='white')
-        # img_qr_size = img_qr.size
-        
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        # profile_url = "TEST"+usuario.user.id
+        print(usuario.id)
+
+        #Version para el servidor
+        #qr.add_data("https://edistancia.morelia.tecnm.mx/credencial/"+str(usuario.id))
+
+        #Version para localhost
+        qr.add_data("http://127.0.0.1:8000/credencial/"+str(usuario.id))
+
+        qr.make(fit=True)
+        logo = Image.open("home/static/img/tecnm_logo-qr.png")
+        img_qr = qr.make_image(fill_color="#1b396a", back_color="white")
+        img_qr_size = img_qr.size
+        logo_size = int(img_qr_size[0] / 6)
+        logo_size_tuple = (logo_size, logo_size)
+        logo = logo.resize(logo_size_tuple)
+        pos = ((img_qr_size[0] - logo_size) // 2, (img_qr_size[1] - logo_size) // 2)    
+        img_qr.paste(logo, pos)
+        img_qr.save("home/static/qr/qr_usuario"+str(usuario.id)+".png", "PNG")
         context = {
             "usuario":usuario,
         }

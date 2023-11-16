@@ -90,7 +90,15 @@
     </div>
   </div>
   <div class="qr">
+    
+    {% comment %}
+      
     <img src="{% static 'img/qr/qr.png' %}" alt="Codigo QR" />
+    {% endcomment %}
+    {% comment %} {{qr.url}}
+    <img src="{{qr}}" alt="Logo ENECB 2023" /> {% endcomment %}
+    <img src="{% static 'qr/qr_usuario' %}{{ usuario.id }}.png" alt="Logo ENECB 2023" />
+    {% comment %} <img src="../../../home/qr/qr_usuario{{usuario.id}}.png" alt="Logo ENECB 2023" /> {% endcomment %}
   </div>
   <div class="direccion">
     <p>
