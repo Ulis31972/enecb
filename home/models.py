@@ -107,6 +107,27 @@ class RegistroAsistencia(models.Model):
     horaRegistro = models.TimeField()
     # ubicacionRegistro = models.CharField(max_length=10)
     # responsableRegistro = models.CharField(max_length=50)
+
+class Itinerario(models.Model):
+    TRANSPORTE = (
+        ("Autobús", "Autobús" ),
+        ("Avión", "Avión"),
+        ("Transporte propio", "Transporte propio"),
+    )
+    UBICACIONES = (
+        ("Central de Autobuses", "Central de Autobuses"),
+        ("Aeropuerto", "Aeropuerto"),
+        ("Llegamos al Tecnológico", "Llegamos al Tecnológico"),
+        ("Otro lugar", "Otro lugar")
+    )
+    transporte = models.CharField(null=False, max_length=100, choices=TRANSPORTE)
+    recogida = models.CharField(null=False, max_length=100, choices=UBICACIONES)
+    fechaLlegada = models.DateTimeField()
+    horaLlegada = models.TimeField()
+    fechaSalida = models.DateTimeField()
+    horaSalida = models.TimeField()
+    observaciones = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     # Avientate unas migraciones, voy a desayunar en fa y regreso, checa que todo jale bien
     # ok

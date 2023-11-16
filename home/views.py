@@ -200,7 +200,7 @@ def registroLista(request, msg):
         
         usuarios_con_registros = Usuarios.objects.prefetch_related(
             Prefetch('registroasistencia_set', queryset=RegistroAsistencia.objects.all())
-        ).all().order_by('id')
+        ).exclude(informacionTec__user__username="KALAN").order_by('id')
         
         # for usuario in usuarios_con_registros:
         #     print(usuario.registroasistencia_set.all())
@@ -284,17 +284,25 @@ def perfil(request):
     hasInfo = False
     if(request.method == "GET"):
         form = CambiarLogoForm()
+        form2 = ItinerarioForm()
         try:
             extraInfo = InformacionExtraUsuario.objects.get(user=user)
             hasInfo = True
         except:
             extraInfo = None
             hasInfo = False
+        try:
+            itinerario = Itinerario.objects.get(user=user)
+        except:
+            itinerario = None
+            
         context={
             'user':user,
             'extraInfo':extraInfo,
             'hasInfo':hasInfo,
-            'form':form
+            'form':form,
+            'form2':form2,
+            'itinerario':itinerario,
         }
         return render(request, 'perfil.html', context)
     else:
@@ -316,6 +324,25 @@ def perfil(request):
             print("Error al guardar")
 
         return redirect('perfil')
+    
+@login_required(login_url='/login/')
+def addItinerario(request):
+    user = request.user
+    if(request.method == "POST"):
+        try:
+            # Intenta obtener el itinerario existente del usuario
+            itinerario_existente = Itinerario.objects.get(user=user)
+            form = ItinerarioForm(request.POST,instance=itinerario_existente)
+        except Itinerario.DoesNotExist:
+            # Si no existe, crea un nuevo formulario
+            form = ItinerarioForm(request.POST)
+
+        if form.is_valid():
+            itinerario = form.save(commit=False)
+            itinerario.user = user
+            itinerario.save()
+    return redirect('perfil')
+
     
 @login_required(login_url='/login/')
 def listaUsuariosTecnologicos(request):

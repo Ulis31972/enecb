@@ -89,3 +89,24 @@ class UsuariosFormPro(forms.ModelForm):
         if not imagen:
             return None  # No se proporcionó una nueva imagen
         return imagen
+    
+class ItinerarioForm(forms.ModelForm):
+    class Meta:
+        model = Itinerario
+        exclude = ['user']
+        labels = {
+            'transporte': 'Medio de transporte',
+            'recogida': 'Lugar donde hay que recogerlos',
+            'fechaLlegada': 'Fecha de llegada',
+            'horaLlegada': 'Hora de llegada',
+            'fechaSalida': 'Fecha de salida',
+            'horaSalida': 'Hora de salida',
+            'observaciones': 'Observaciones',
+        }
+        widgets = {
+            'fechaLlegada': forms.DateTimeInput(attrs={'type': 'date'}),
+            'horaLlegada': forms.TextInput(attrs={'type': 'time'}),
+            'fechaSalida': forms.TextInput(attrs={'type': 'date'}),
+            'horaSalida': forms.TextInput(attrs={'type': 'time'}),
+            'observaciones': forms.Textarea(attrs={'rows': '2'}),
+        }

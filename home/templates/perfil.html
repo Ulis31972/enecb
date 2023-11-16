@@ -10,6 +10,9 @@
 <div class="container">
     {% if hasInfo %}
         <div class="main-body mt-5">
+			<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+				Itinerario
+			</button>
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="card">
@@ -50,6 +53,36 @@
 					</div>
 				</div>
 			</div>
+			<div class="row mt-3">
+				{% if itinerario is not None %}
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+						<thead class="table-dark">
+							<tr>
+								<th scope="col">Medio de transporte</th>
+								<th scope="col">Lugar donde hay que recogerlos</th>
+								<th scope="col">Fecha de llegada</th>
+								<th scope="col">Hora de llegada</th>
+								<th scope="col">Fecha de salida</th>
+								<th scope="col">Hora de salida</th>
+								<th scope="col">Observaciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{itinerario.transporte}}</td>
+								<td>{{itinerario.recogida}}</td>
+								<td>{{itinerario.fechaLlegada}}</td>
+								<td>{{itinerario.horaLlegada}}</td>
+								<td>{{itinerario.fechaSalida}}</td>
+								<td>{{itinerario.horaSalida}}</td>
+								<td>{{itinerario.observaciones}}</td>
+							</tr>
+						</tbody>
+						</table>
+					</div>
+				{% endif %}
+			</div>
 		</div>
     {% else %}
         <div class="text-center">
@@ -69,6 +102,28 @@
 					<div class="modal-body">
 							{% csrf_token %}
 							{{ form|crispy }}						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Guardar Cambios</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	{% comment %} Modal Itinerario {% endcomment %}
+	<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Itinerario</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form method="post" action="{% url "addItinerario" %}">
+					<div class="modal-body">
+							{% csrf_token %}
+							{{ form2|crispy }}
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

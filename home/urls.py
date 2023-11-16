@@ -19,6 +19,7 @@ urlpatterns = [
     path('registro/lista/crear/usuario', views.registroListaCrear, name="registroListaCrear"),
     path('horario', views.horario, name="horario"),
     path('perfil', views.perfil, name="perfil"),
+    path('perfil/itinerario', views.addItinerario, name="addItinerario"),
     # path('registro', views.registro, name="registro"),
     path('scripts/<str:algo>', viewsKLN.kln, name='scripts'),
     path('lista/usuarios/', views.listaUsuariosTecnologicos, name='listaUsuariosTecnologicos'),
