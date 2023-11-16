@@ -193,6 +193,10 @@
     $(document).ready(function() {
         $('#usersTable').DataTable({
             "responsive": true, 
+            "dom": 'Bfrtip',
+            "buttons": [
+              'copy', 'excel', 'pdf'
+            ],
             "order": [], // Desactiva el orden por defecto
             "searching": true, // Habilita el buscador
             "lengthMenu": [10, 25, 50, 75, 100], // Opciones para seleccionar cuántas filas mostrar
