@@ -69,10 +69,10 @@ def credencial(request, id):
         print(usuario.id)
 
         #Version para el servidor
-        #qr.add_data("https://edistancia.morelia.tecnm.mx/credencial/"+str(usuario.id))
+        qr.add_data("https://edistancia.morelia.tecnm.mx/credencial/"+str(usuario.id))
 
         #Version para localhost
-        qr.add_data("http://127.0.0.1:8000/credencial/"+str(usuario.id))
+        #qr.add_data("http://127.0.0.1:8000/credencial/"+str(usuario.id))
 
         qr.make(fit=True)
         logo = Image.open("home/static/img/tecnm_logo-qr.png")
