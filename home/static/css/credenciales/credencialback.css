@@ -9,9 +9,7 @@ h3 {
   border-radius: 2rem;
   width: 20rem;
   height: 30rem;
-  box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
-  -webkit-box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +24,12 @@ h3 {
   position: relative;
   width: 100%;
 }
+.decorador_design .user_type{
+  position: absolute;
+  width: 19.6rem;
+  top: 90px;
+}
+
 .logo_itmorelia {
   top: 0;
   left: 35%;
@@ -50,4 +54,13 @@ h3 {
 }
 .direccion p {
   font-size: 12;
+}
+.web{
+  box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
+}
+.pdf{
+  border: 3px solid black;
+  border-radius: 2rem;
 }

@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<div class="contenedor_credencial">
+<div class="contenedor_credencial web">
   <div class="logo_tec">
     <img src="../../static/img/TecNM_logo.png" alt="Logotipo TECNM" />
   </div>
@@ -45,7 +45,25 @@
     </div>
   </div>
   <div class="decorador_frente">
-    <svg
+    {% if usuario.tipoUsuario == "Visitante" %}
+      <img src="{% static 'img/decoradores/footer_visitante.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Autoridad" %}
+      <img src="{% static 'img/decoradores/footer_autoridad.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Asesor" %}
+      <img src="{% static 'img/decoradores/footer_asesor.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Organizador" %}
+      <img src="{% static 'img/decoradores/footer_organizador.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
+      <img src="{% static 'img/decoradores/footer_basicas.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Participante Económico Administrativo" %}
+      <img src="{% static 'img/decoradores/footer_economico.png' %}" alt="visitante" />
+    {% endif %}
+    {% comment %} <svg
       class="separator"
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
@@ -57,11 +75,11 @@
       {% if usuario.tipoUsuario == "Visitante" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
-          style="fill: #b0eb49"
+          style="fill: #93AEBE"
           d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
         ></path>
         <path
-          style="fill: #f2ff00"
+          style="fill: #364E52"
           d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
         ></path>
       </g>
@@ -81,27 +99,39 @@
       {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
-          style="fill: #53ba4c"
+          style="fill: #F49C00"
           d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
         ></path>
         <path
-          style="fill: #23571f"
+          style="fill: #88570C"
           d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
         ></path>
       </g>
       {% endif %}
-      {% if usuario.tipoUsuario == "Organizador" %}
+      {% if usuario.tipoUsuario == "Participante Económico Administrativo" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
-          style="fill: #d6375f"
+          style="fill: #53BA4C"
           d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
         ></path>
         <path
-          style="fill: #6a1c30"
+          style="fill: #23571F"
           d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
         ></path>
       </g>
       {% endif %}
-    </svg>
+      {% if usuario.tipoUsuario == "Asesor" %}
+      <g transform="translate(-14.514284,-115.36352)">
+        <path
+          style="fill: #DD6FD4"
+          d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+        <path
+          style="fill: #8A1F86"
+          d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
+        ></path>
+      </g>
+      {% endif %}
+    </svg> {% endcomment %}
   </div>
 </div>

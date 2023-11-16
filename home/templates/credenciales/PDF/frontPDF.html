@@ -1,63 +1,77 @@
 {% load static %}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Gothic+A1&family=KoHo&display=swap"
-  rel="stylesheet"
-/>
 
-<div class="contenedor_credencial">
-  <div class="decorador" 
-  
-  
-  {% if usuario.tipoUsuario == "Autoridad" %}
-  style="background-color:#29235c ;"
-  {% endif %}
-  {% if usuario.tipoUsuario == "Organizador" %}
-  style="background-color:#6a1c30 ;"
-  {% endif %}
-  {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
-  style="background-color:#88570C ;"
-  {% endif %}
-  {% if usuario.tipoUsuario == "Participante Económico Administrativo" %}
-  style="background-color:#23571F ;"
-  {% endif %}
-  {% if usuario.tipoUsuario == "Visitante" %}
-  style="background-color:#364E52 ;"
-  {% endif %}
-  {% if usuario.tipoUsuario == "Asesor" %}
-  style="background-color:#8A1F86 ;"
-  {% endif %}
-  >
-    <!--Esto debe tener position relative-->
-    <div class="decorador_design">
-      {% if usuario.tipoUsuario == "Visitante" %}
-        <img src="{% static 'img/decoradores/header_visitante.png' %}" alt="visitante"  class="user_type"/>
-      {% endif %}
-      {% if usuario.tipoUsuario == "Autoridad" %}
-        <img src="{% static 'img/decoradores/header_autoridad.png' %}" alt="visitante" class="user_type" />
-      {% endif %}
-      {% if usuario.tipoUsuario == "Asesor" %}
-        <img src="{% static 'img/decoradores/header_asesor.png' %}" alt="visitante" class="user_type"/>
-      {% endif %}
-      {% if usuario.tipoUsuario == "Organizador" %}
-        <img src="{% static 'img/decoradores/header_organizador.png' %}" alt="visitante" class="user_type"/>
-      {% endif %}
-      {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
-        <img src="{% static 'img/decoradores/header_basicas.png' %}" alt="visitante" class="user_type"/>
-      {% endif %}
-      {% if usuario.tipoUsuario == "Participante Económico Administrativo" %}
-        <img src="{% static 'img/decoradores/header_economico.png' %}" alt="visitante" class="user_type"/>
-      {% endif %}
-      {% comment %} <svg
-        class="separator"
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="3.5rem"
-        viewBox="0.2 0 178 30"
-        preserveAspectRatio="none"
-        transform=" translate(0 90)"
-      >
+<div class="contenedor_credencial pdf">
+  <div class="logo_tec">
+    <img src="{% static 'img/TecNM_logo.png' %}" alt="Logotipo TECNM">
+  </div>
+  <div class="contenido_credencial ">
+    <div class="datos_credencial">
+      <div class="container_foto" style="background-image: url('{{ usuario.imagen.url }}');">
+        
+        {% comment %}
+        <img src="{{usuario.imagen.url}}" alt="Su Foto" />
+        {% endcomment %}
+      </div>
+      <div class="datos_personales">
+        <div class="datos_nombre">
+          <p class="nombre">{{usuario.nombre}}</p>
+        </div>
+        <div class="datos_cargo">
+          <p class="title_cargo">{{usuario.tipoUsuario}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="informacion_adicional">
+      <div class="tec_procedencia">
+        <div class="logo_tec_procedencia" style="background-image: url('{{ usuario.informacionTec.logo.url }}');">
+          
+          {% comment %}
+          <img
+            src="{{usuario.informacionTec.logo.url }}"
+            alt="Logotipo Tec de procedencia"
+          />
+          {% endcomment %}
+            
+        </div>
+        <div class="texto_procedencia m-1">
+          <p>{{usuario.informacionTec.user.first_name}}</p>
+        </div>
+      </div>
+      <div class="logo_enecb">
+        <img src="{% static 'img/EnecbLogoCredencial.png' %}" alt="Logo ENECB 2023" />
+      </div>
+    </div>
+  </div>
+  <div class="decorador_frente">
+    {% if usuario.tipoUsuario == "Visitante" %}
+      <img src="{% static 'img/decoradores/footer_visitante.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Autoridad" %}
+      <img src="{% static 'img/decoradores/footer_autoridad.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Asesor" %}
+      <img src="{% static 'img/decoradores/footer_asesor.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Organizador" %}
+      <img src="{% static 'img/decoradores/footer_organizador.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
+      <img src="{% static 'img/decoradores/footer_basicas.png' %}" alt="visitante" />
+    {% endif %}
+    {% if usuario.tipoUsuario == "Participante Económico Administrativo" %}
+      <img src="{% static 'img/decoradores/footer_economico.png' %}" alt="visitante" />
+    {% endif %}
+    {% comment %} <svg
+      class="separator"
+      xmlns="http://www.w3.org/2000/svg"
+      width="100%"
+      height="3.5rem"
+      viewBox="0.2 0 178 30"
+      preserveAspectRatio="none"
+      transform="rotate(180) "
+    >
       {% if usuario.tipoUsuario == "Visitante" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
@@ -106,19 +120,7 @@
         ></path>
       </g>
       {% endif %}
-      {% if usuario.tipoUsuario == "Organizador" %}
-      <g transform="translate(-14.514284,-115.36352)">
-        <path
-          style="fill: #d6375f"
-          d="m 14.74107,115.49581 h 178.02679 v 30.61607 h -29.10417 v -12.47321 h -10.58333 v -8.31548 h -13.98512 v 13.98512 h -20.41072 v -13.98512 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 121.54343 H 51.40476 v 15.875 H 29.860117 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
-        ></path>
-        <path
-          style="fill: #6a1c30"
-          d="M 14.741071,112.54762 H 192.76786 v 30.61607 H 163.66369 V 130.69048 H 153.08036 V 122.375 h -13.98512 v 13.98512 H 118.68452 V 122.375 h -8.31547 v 7.18155 h -7.18155 v 10.9613 H 85.422617 v -10.9613 H 68.791666 V 118.59524 H 51.40476 v 15.875 H 29.860118 v -9.82739 h -8.693452 v -7.55952 h -6.520089 v -4.53571 z"
-        ></path>
-      </g>
-      {% endif %}
-      {% if usuario.tipoUsuario == "Organizador" %}
+      {% if usuario.tipoUsuario == "Asesor" %}
       <g transform="translate(-14.514284,-115.36352)">
         <path
           style="fill: #DD6FD4"
@@ -130,28 +132,6 @@
         ></path>
       </g>
       {% endif %}
-      </svg> {% endcomment %}
-      <div class="logo_itmorelia">
-        <!--Esto debe tener position absolute-->
-        <img src="{% static 'img/imgActualizadas/ESCUDO TEC OK.png' %}" alt="Logo Tec Morelia" />
-      </div>
-    </div>
-  </div>
-  <div class="qr">
-    
-    {% comment %}
-      
-    <img src="{% static 'img/qr/qr.png' %}" alt="Codigo QR" />
-    {% endcomment %}
-    {% comment %} {{qr.url}}
-    <img src="{{qr}}" alt="Logo ENECB 2023" /> {% endcomment %}
-    <img src="{% static 'qr/qr_usuario' %}{{ usuario.id }}.png" alt="Logo ENECB 2023" />
-    {% comment %} <img src="../../../home/qr/qr_usuario{{usuario.id}}.png" alt="Logo ENECB 2023" /> {% endcomment %}
-  </div>
-  <div class="direccion">
-    <p>
-      Avenida Tecnológico 1500,<br />
-      58120 Morelia, Michoacán
-    </p>
+    </svg> {% endcomment %}
   </div>
 </div>

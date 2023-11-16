@@ -1,0 +1,74 @@
+{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Gothic+A1&family=KoHo&display=swap"
+  rel="stylesheet"
+/>
+<div class="contenedor_credencial pdf">
+  <div class="decorador" 
+  
+  
+  {% if usuario.tipoUsuario == "Autoridad" %}
+  style="background-color:#29235c ;"
+  {% endif %}
+  {% if usuario.tipoUsuario == "Organizador" %}
+  style="background-color:#6a1c30 ;"
+  {% endif %}
+  {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
+  style="background-color:#88570C ;"
+  {% endif %}
+  {% if usuario.tipoUsuario == "Participante Económico Administrativo" %}
+  style="background-color:#23571F ;"
+  {% endif %}
+  {% if usuario.tipoUsuario == "Visitante" %}
+  style="background-color:#364E52 ;"
+  {% endif %}
+  {% if usuario.tipoUsuario == "Asesor" %}
+  style="background-color:#8A1F86 ;"
+  {% endif %}
+  >
+    <!--Esto debe tener position relative-->
+    <div class="decorador_design">
+      {% if usuario.tipoUsuario == "Visitante" %}
+        <img src="{% static 'img/decoradores/header_visitante.png' %}" alt="visitante"  class="user_type"/>
+      {% endif %}
+      {% if usuario.tipoUsuario == "Autoridad" %}
+        <img src="{% static 'img/decoradores/header_autoridad.png' %}" alt="visitante" class="user_type" />
+      {% endif %}
+      {% if usuario.tipoUsuario == "Asesor" %}
+        <img src="{% static 'img/decoradores/header_asesor.png' %}" alt="visitante" class="user_type"/>
+      {% endif %}
+      {% if usuario.tipoUsuario == "Organizador" %}
+        <img src="{% static 'img/decoradores/header_organizador.png' %}" alt="visitante" class="user_type"/>
+      {% endif %}
+      {% if usuario.tipoUsuario == "Participante Ciencias Básicas" %}
+        <img src="{% static 'img/decoradores/header_basicas.png' %}" alt="visitante" class="user_type"/>
+      {% endif %}
+      {% if usuario.tipoUsuario == "Participante Económico Administrativo" %}
+        <img src="{% static 'img/decoradores/header_economico.png' %}" alt="visitante" class="user_type"/>
+      {% endif %}
+      <div class="logo_itmorelia">
+        <!--Esto debe tener position absolute-->
+        <img src="{% static 'img/imgActualizadas/ESCUDO TEC OK.png' %}" alt="Logo Tec Morelia" />
+      </div>
+    </div>
+  </div>
+  <div class="qr">
+    
+    {% comment %}
+      
+    <img src="{% static 'img/qr/qr.png' %}" alt="Codigo QR" />
+    {% endcomment %}
+    {% comment %} {{qr.url}}
+    <img src="{{qr}}" alt="Logo ENECB 2023" /> {% endcomment %}
+    <img src="{% static 'qr/qr_usuario' %}{{ usuario.id }}.png" alt="Logo ENECB 2023" />
+    {% comment %} <img src="../../../home/qr/qr_usuario{{usuario.id}}.png" alt="Logo ENECB 2023" /> {% endcomment %}
+  </div>
+  <div class="direccion">
+    <p>
+      Avenida Tecnológico 1500,<br />
+      58120 Morelia, Michoacán
+    </p>
+  </div>
+</div>

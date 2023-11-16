@@ -10,9 +10,11 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.utils import timezone
 from .forms import *
 from datetime import datetime, timedelta, timezone
+from django.template.loader import render_to_string
 from django.db.models import Prefetch
 import qrcode
 from PIL import Image
+from weasyprint import HTML, CSS
 
 from .models import *
 
@@ -46,17 +48,33 @@ def credencial(request, id):
         # Obtén la ruta al archivo CSS
         css_url = os.path.join(settings.BASE_DIR, 'home/static/css/credenciales/credencialfrentePDF.css')
         # Obtén la ruta al archivo de imagen
-        image_url = extraInfo.imagen.path
+        image_url = usuario.imagen.url
 
         # Carga la plantilla HTML
-        template = get_template("credenciales/credencialesFront.html")
-        context = {"name": "CredencialFrente", "firstName": firstName, "lastName": lastName, "extraInfo": extraInfo}
-        html_template = template.render(context)
+        template = get_template("credenciales/PDF/credencialFront2.html")
+        context = {"usuario": usuario}
+        # html_template = template.render(context)
+        html = render_to_string("credenciales/PDF/credencialFront2.html", context)
 
         # Genera el PDF con WeasyPrint
-        pdf = weasyprint.HTML(string=html_template, base_url=request.build_absolute_uri()).write_pdf(
-            stylesheets=[weasyprint.CSS(css_url)],
+        pdf = HTML(string=html, base_url=request.build_absolute_uri()).write_pdf(
+            stylesheets=[CSS(css_url)],
             weasyprint_settings = weasyprint_settings,
+            optimize_images=True, jpeg_quality=60, dpi=150,
+            # options={
+            #     'enable-local-file-access': True,
+            #     'quiet': True,
+            #     'encoding': "UTF-8",
+            #     'no-outline': None,
+            #     'margin-top': '0.5cm',
+            #     'margin-right': '0.5cm',
+            #     'margin-bottom': '0.5cm',
+            #     'margin-left': '0.5cm',
+            # },
+            # target=None,
+            # finisher=None,
+            # zoom=1,
+            # attachments=None,
         )
 
         # Configura la respuesta HTTP y devuelve el PDF
@@ -66,7 +84,7 @@ def credencial(request, id):
     else:
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
         # profile_url = "TEST"+usuario.user.id
-        print(usuario.id)
+        # print(usuario.id)
 
         #Version para el servidor
         qr.add_data("https://edistancia.morelia.tecnm.mx/credencial/"+str(usuario.id))
@@ -87,7 +105,19 @@ def credencial(request, id):
         context = {
             "usuario":usuario,
         }
-        return render(request, 'credenciales/mostrarCredenciales.html', context)
+        return render(request, 'credenciales/PDF/canvas_PDF.html', context)
+    
+def credencialPDF(request, id):
+    print("id pdf", id)
+    try:
+        usuario = Usuarios.objects.get(id=id)
+    except:
+        usuario = None
+    context = {
+        "usuario":usuario,
+    }
+    print("usuariopdf", usuario)
+    return render(request, 'credenciales/PDF/canvas_PDF.html', context)
     
 def loginView(request):
     if request.method == 'POST':
@@ -203,7 +233,7 @@ def registroListaActualizar(request, id):
                 form.save()
                 return redirect('registroLista', msg='exitoUpdateUser')
             else:
-                print("no es valido")
+                # print("no es valido")
                 return redirect('registroLista', msg='errorUpdateUser')
         except:
             return redirect('registroLista', msg='errorUpdateExistUser')
@@ -222,7 +252,7 @@ def registroListaCrear(request):
                 form.save()
                 return redirect('registroLista', msg='exitoCreateUser')
             else:
-                print("no es valido")
+                # print("no es valido")
                 return redirect('registroLista', msg='errorCreateUser')
         except:
             return redirect('registroLista', msg='errorCreateUser')

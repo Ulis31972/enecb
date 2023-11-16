@@ -1,5 +1,5 @@
 
-{% extends 'layout/layoutFormal.html' %}
+{% extends 'layout/layoutFormalVacio.html' %}
 {% load static %}
 {% block content %}
   <head>
@@ -10,13 +10,16 @@
   href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Gothic+A1&family=KoHo&display=swap"
   rel="stylesheet"
 />
+<link rel="stylesheet" href="{% static 'css/credenciales/credencialback.css' %}">
 <link rel="stylesheet" href="{% static 'css/credenciales/credencialfrente.css' %}" />
     <link rel="stylesheet" href="{% static 'css/credenciales/mostrarCredenciales.css' %}" />
     <title>Gafete</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
   </head>
   <body class="mostrar_credenciales">
     <div class="contenedor_credenciales">
-        <div class="credencial_frente">
+          <div class="credencial_frente">
             {% include 'credenciales/credencialesFront.html' %}
           </div>
           <div class="credencial_reverso">
@@ -26,17 +29,64 @@
     <div class="container_buttons">
       <form method="POST">{% csrf_token %}
         
-        {% comment %} 
-        <button type="submit" class="btn btn-primary text-center"><i class="fa-solid fa-file-arrow-down"></i></button>{% endcomment %}
+        {% comment %} {% endcomment %}
+        {% comment %} <button type="submit" class="btn btn-primary text-center"><i class="fa-solid fa-file-arrow-down"></i></button> {% endcomment %}
       </form>
-      {% comment %} <button class="btn btn-primary d-flex flex-row text-center" id="rotate-card">
-        <i class="fa-solid fa-rotate"></i>
-      </button> {% endcomment %}
       <button class="btn btn-primary" id="rotate-card">
         <i class="fa-solid fa-rotate"></i>
+      </button>
+      <button class="btn btn-primary"  onclick="generarPDF('{{usuario.pk}}')">
+        <i class="fa-solid fa-file-arrow-down"></i>
       </button>
     </div>
 
     <script src="{% static 'js/credencial/mostrarCredencial.js' %}"></script>
+    {% comment %} <script>
+      function generarPDF() {
+        // Seleccionar el cuerpo del documento HTML
+        var element = document.body;
+
+        // Opciones para la generación del PDF
+        var options = {
+          margin: 10,
+          filename: "documento.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        };
+
+        // Usar html2pdf para generar el PDF
+        html2pdf(element, options);
+      }
+    </script> {% endcomment %}
+    <script>
+      function generarPDF(id) {
+          var url = `/descarga/pdf/${id}` 
+          // Realizar una solicitud AJAX para obtener el HTML de la vista Django
+          fetch(url)
+              .then(response => response.text())
+              .then(html => {
+                  // Crear un elemento div temporal y agregar el HTML cargado
+                  var tempDiv = document.createElement('div');
+                  tempDiv.innerHTML = html;
+
+                  // Opciones para la generación del PDF
+                  var options = {
+                      margin: 10,
+                      filename: "documento.pdf",
+                      image: { type: "jpeg", quality: 0.98 },
+                      html2canvas: { scale: 2 },
+                      jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+                  };
+
+                  // Usar html2pdf para generar el PDF a partir del nuevo HTML
+                  html2pdf(tempDiv, options);
+              })
+              .catch(error => {
+                  console.error('Error al cargar el HTML:', error);
+              });
+      }
+
+    </script>
   </body>
   {% endblock %}
