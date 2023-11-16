@@ -1,5 +1,5 @@
 
-{% extends 'layout/layoutFormalVacio.html' %}
+{% extends 'layout/layoutFormal.html' %}
 {% load static %}
 {% block content %}
   <head>
@@ -35,9 +35,9 @@
       <button class="btn btn-primary" id="rotate-card">
         <i class="fa-solid fa-rotate"></i>
       </button>
-      <button class="btn btn-primary"  onclick="generarPDF('{{usuario.pk}}')">
+      {% comment %} <button class="btn btn-primary"  onclick="generarPDF('{{usuario.pk}}')">
         <i class="fa-solid fa-file-arrow-down"></i>
-      </button>
+      </button> {% endcomment %}
     </div>
 
     <script src="{% static 'js/credencial/mostrarCredencial.js' %}"></script>

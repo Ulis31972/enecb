@@ -61,9 +61,10 @@
                   data-bs-target="#exampleModal"
                   onClick="llenarFormulario('{{usuario.pk}}', '{{usuario.nombre}}', '{{usuario.curp}}', '{{usuario.telefonoEmergencia}}', '{{usuario.condicion}}')"
                 >
-                  Editar
+                  <i class="bi bi-pencil-square"></i>
                 </button>
-                <a class="btn btn-primary mt-2" href="{% url 'credencial' id=usuario.pk %}">Gafete</a>
+                <a class="btn btn-primary mt-2" href="{% url 'credencial' id=usuario.pk %}"><i class="bi bi-card-heading"></i></a>
+                <a class="btn btn-primary mt-2" href="{% url 'credencialPDF' id=usuario.pk %}"><i class="bi bi-file-earmark-arrow-down"></i></a>
       
               </td>
             </tr>

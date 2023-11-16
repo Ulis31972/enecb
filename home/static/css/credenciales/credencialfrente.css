@@ -6,8 +6,7 @@ p,h1,h2,h3{
   width: 20rem;
   height: 30rem;
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column;}
 .logo_tec {
   
   width: 100%;
@@ -25,6 +24,7 @@ p,h1,h2,h3{
 .datos_credencial {
   display: flex;
   flex-direction: column;
+  z-index: 100;
 }
 .container_foto {
   background-size: cover;
@@ -63,9 +63,10 @@ p,h1,h2,h3{
 }
 .logo_tec_procedencia {
   background-position: center;
-  background-size: cover;
-  width: 7rem;
-  height: 7rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 10rem;
+  height: 10rem;
   margin-bottom: 0.5rem;
 }
 .logo_tec_procedencia img {
@@ -87,14 +88,14 @@ p,h1,h2,h3{
   font-family: "KoHo", sans-serif;
 }
 .nombre{
-  font-size: 20;
+  font-size: 15px;
 }
 .apellidos{
   font-size: 15;
 }
 .title_cargo{
   font-family: 'Atkinson Hyperlegible', sans-serif;
-  font-size: 25;
+  font-size: 14px;
   color: #3D5780;
 }
 
@@ -106,9 +107,25 @@ p,h1,h2,h3{
   position: absolute;
   bottom: 0;
   margin-top: 2rem;
+  z-index: 0;
 }
 .decorador_frente img{
   width: 20rem;
+}
+.decorador_frentepdf svg, .decorador_frentepdf img{
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+.decorador_frentepdf{
+  position: absolute;
+  bottom: 0;
+  margin-top: 2rem;
+  z-index: 0;
+  padding: 2px;
+}
+.decorador_frentepdf img{
+  width: 19.7rem;
+
 }
 .web{
   box-shadow: -11px 8px 18px -4px rgba(0,0,0,0.75);
