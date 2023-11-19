@@ -16,8 +16,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
   </head>
-  <body class="mostrar_credenciales" >
-    <div class="contenedor_credenciales cont_pdf" style="display: flex; gap: 2rem; flex-direction: row;">
+  <body class="mostrar_credenciales2" >
+    <div class="contenedor_credenciales2" style="display: flex; gap: 2rem; flex-direction: row;">
           <div class="">
             {% include 'credenciales/PDF/frontPDF.html' %}
           </div>
@@ -49,12 +49,12 @@
           filename: "documento.pdf",
           image: { type: "jpeg", quality: 0.98 },
           html2canvas: { scale: 2 },
-          jsPDF: { unit: "mm", format: "a4", orientation: "landscape" },
+          jsPDF: { unit: "mm", format: "a4", orientation: "p" },
         };
 
         // Usar html2pdf para generar el PDF
         html2pdf(element, options);
       }
-    </script> 
+    </script>
   </body>
 {% endblock %}

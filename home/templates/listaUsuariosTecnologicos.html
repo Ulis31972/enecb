@@ -65,6 +65,7 @@
                 </button>
                 <a class="btn btn-primary mt-2" href="{% url 'credencial' id=usuario.pk %}"><i class="bi bi-card-heading"></i></a>
                 <a class="btn btn-primary mt-2" href="{% url 'credencialPDF' id=usuario.pk %}"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                {% comment %} <button type="button" class="btn btn-primary" onClick="generarPDF('{{usuario.pk}}')">D</button> {% endcomment %}
       
               </td>
             </tr>
@@ -123,6 +124,8 @@
 
 {% endblock %}
 {% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
 <script>
   function llenarFormulario(id, nombre, curp, telefonoEmergencia, condicion) {
     // Actualizar el action del formulario
@@ -137,5 +140,36 @@
     document.getElementById("id_condicion").value =
       condicion === "None" ? "" : condicion;
   }
+</script>
+<script>
+  function generarPDF(id) {
+    $.ajax({
+        url: `/descarga/pdf/${id}/`,
+        method: 'GET',
+        dataType: 'html',
+        success: function (html) {
+          console.log(html);  
+            // Crear un elemento div temporal y agregar el HTML cargado
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            // Opciones para la generación del PDF
+            var options = {
+                margin: 10,
+                filename: "documento.pdf",
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2, imageTimeout: 50000 },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+            };
+
+            // Usar html2pdf para generar el PDF a partir del nuevo HTML
+            html2pdf(html, options);
+        },
+        error: function (error) {
+            console.error('Error al cargar el HTML:', error);
+        }
+    });
+  }
+
 </script>
 {% endblock js %}
