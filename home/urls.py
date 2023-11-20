@@ -24,7 +24,8 @@ urlpatterns = [
     path('scripts/<str:algo>', viewsKLN.kln, name='scripts'),
     path('lista/usuarios/', views.listaUsuariosTecnologicos, name='listaUsuariosTecnologicos'),
     path('lista/usuarios/<int:id>/', views.actualizarUsuario, name='actualizarUsuario'),
-    path('descarga/pdf/<int:id>/', views.credencialPDF, name='credencialPDF')
+    path('descarga/pdf/<int:id>/', views.credencialPDF, name='credencialPDF'),
+    path('descarga/all/<int:rango>', views.credencialall, name='credencialall')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
