@@ -229,10 +229,13 @@ def registroLista(request, msg):
             Prefetch('registroasistencia_set', queryset=RegistroAsistencia.objects.all())
         ).exclude(informacionTec__user__username="KALAN").order_by('id')
         
+        itinerario = Itinerario.objects.all()
+        
         # for usuario in usuarios_con_registros:
         #     print(usuario.registroasistencia_set.all())
     except:
         usuarios_con_registros = None
+        itinerario = None
         # usuarios = None
         
     form = UsuariosFormPro()
@@ -265,6 +268,7 @@ def registroLista(request, msg):
         'form2': form2,
         'msg': mensaje,
         'msgType': msgType,
+        'itinerarios':itinerario,
     })
     
 @login_required(login_url='/login/')
